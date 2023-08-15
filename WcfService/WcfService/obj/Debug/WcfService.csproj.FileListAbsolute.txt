@@ -1,0 +1,21 @@
+C:\Users\rexle\source\repos\WcfService\WcfService\bin\WcfService.dll.config
+C:\Users\rexle\source\repos\WcfService\WcfService\bin\WcfService.dll
+C:\Users\rexle\source\repos\WcfService\WcfService\bin\WcfService.pdb
+C:\Users\rexle\source\repos\WcfService\WcfService\obj\Debug\WcfService.csproj.AssemblyReference.cache
+C:\Users\rexle\source\repos\WcfService\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
+C:\Users\rexle\source\repos\WcfService\WcfService\obj\Debug\WcfService.dll
+C:\Users\rexle\source\repos\WcfService\WcfService\obj\Debug\WcfService.pdb
+C:\Users\rexle\source\repos\2 August 2023\WcfService\WcfService\bin\WcfService.dll.config
+C:\Users\rexle\source\repos\2 August 2023\WcfService\WcfService\bin\WcfService.dll
+C:\Users\rexle\source\repos\2 August 2023\WcfService\WcfService\bin\WcfService.pdb
+C:\Users\rexle\source\repos\2 August 2023\WcfService\WcfService\obj\Debug\WcfService.csproj.AssemblyReference.cache
+C:\Users\rexle\source\repos\2 August 2023\WcfService\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
+C:\Users\rexle\source\repos\2 August 2023\WcfService\WcfService\obj\Debug\WcfService.dll
+C:\Users\rexle\source\repos\2 August 2023\WcfService\WcfService\obj\Debug\WcfService.pdb
+C:\Users\samue\OneDrive\Desktop\ASP.Net\WcfService\WcfService\bin\WcfService.dll.config
+C:\Users\samue\OneDrive\Desktop\ASP.Net\WcfService\WcfService\bin\WcfService.dll
+C:\Users\samue\OneDrive\Desktop\ASP.Net\WcfService\WcfService\bin\WcfService.pdb
+C:\Users\samue\OneDrive\Desktop\ASP.Net\WcfService\WcfService\obj\Debug\WcfService.csproj.AssemblyReference.cache
+C:\Users\samue\OneDrive\Desktop\ASP.Net\WcfService\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
+C:\Users\samue\OneDrive\Desktop\ASP.Net\WcfService\WcfService\obj\Debug\WcfService.dll
+C:\Users\samue\OneDrive\Desktop\ASP.Net\WcfService\WcfService\obj\Debug\WcfService.pdb
