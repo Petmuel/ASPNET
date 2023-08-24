@@ -56,6 +56,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -80,6 +81,36 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServiceReference2\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference2_t\Service1.wsdl" />
+    <None Include="Connected Services\ServiceReference2_t\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference2_t\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference2_t\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference2_halfdone\Service1.wsdl" />
+    <None Include="Connected Services\ServiceReference2_halfdone\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference2_halfdone\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference2_halfdone\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference2_withoutTimer\Service1.wsdl" />
+    <None Include="Connected Services\ServiceReference2_withoutTimer\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference2_withoutTimer\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference2_withoutTimer\Service12.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServiceReference2_form\Service1.wsdl" />
@@ -123,6 +154,27 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\ServiceReference2_withoutTimer\Service1.disco" />
+    <None Include="Connected Services\ServiceReference2_withoutTimer\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceReference2_withoutTimer\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceReference2_withoutTimer\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ServiceReference2_halfdone\Service1.disco" />
+    <None Include="Connected Services\ServiceReference2_halfdone\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceReference2_halfdone\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceReference2_halfdone\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ServiceReference2_t\Service1.disco" />
+    <None Include="Connected Services\ServiceReference2_t\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceReference2_t\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceReference2_t\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <None Include="Connected Services\ServiceReference2\Service1.disco" />
     <None Include="Connected Services\ServiceReference2\configuration91.svcinfo" />
     <None Include="Connected Services\ServiceReference2\configuration.svcinfo" />
@@ -140,6 +192,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="machine.aspx" />
+    <Content Include="test.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +202,21 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\ServiceReference2\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReference2_t\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReference2_halfdone\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReference2_withoutTimer\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -190,6 +258,13 @@
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\ServiceReference1\Service1.wsdl" />
@@ -224,6 +299,9 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
     <WCFMetadataStorage Include="Connected Services\ServiceReference2\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReference2_t\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReference2_halfdone\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReference2_withoutTimer\" />
     <WCFMetadataStorage Include="Connected Services\ServiceReference2_form\" />
     <WCFMetadataStorage Include="Connected Services\ServiceReference2_DeleteMachine\" />
     <WCFMetadataStorage Include="Connected Services\ServiceReference2_updateMachine\" />

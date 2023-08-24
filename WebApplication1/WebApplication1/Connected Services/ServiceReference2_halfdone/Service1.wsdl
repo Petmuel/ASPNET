@@ -7,6 +7,12 @@
       <xsd:import schemaLocation="http://localhost:52597/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IService1_GetUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUpdate" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUpdateResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_InsertUserDetails_InputMessage">
     <wsdl:part name="parameters" element="tns:InsertUserDetails" />
   </wsdl:message>
@@ -62,6 +68,10 @@
     <wsdl:part name="parameters" element="tns:getAllMachineResponse" />
   </wsdl:message>
   <wsdl:portType name="IService1">
+    <wsdl:operation name="GetUpdate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUpdate" message="tns:IService1_GetUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetUpdateResponse" message="tns:IService1_GetUpdate_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="InsertUserDetails">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/InsertUserDetails" message="tns:IService1_InsertUserDetails_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/InsertUserDetailsResponse" message="tns:IService1_InsertUserDetails_OutputMessage" />
@@ -101,6 +111,15 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetUpdate">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="InsertUserDetails">
       <soap:operation soapAction="http://tempuri.org/IService1/InsertUserDetails" style="document" />
       <wsdl:input>

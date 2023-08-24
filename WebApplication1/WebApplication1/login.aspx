@@ -75,7 +75,7 @@
             <label for="password">Password:</label>
             <input type="password" id="password" class="input-field" name="password" required>
             <br><asp:Label ID="Label1" runat="server" ForeColor="#d20000"></asp:Label><br><br>
-            <input type="submit" runat="server" value="Sign In" class="login-btn" onServerClick="btnLogin_Click"> <br>
+          <asp:Button runat="server" UseSubmitBehavior="false" Class="login-btn" Text="Sign In" onClick="btnLogin_Click"/>
         </form>
     </div>
 </body>

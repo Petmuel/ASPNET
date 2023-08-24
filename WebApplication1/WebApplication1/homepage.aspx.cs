@@ -30,14 +30,15 @@ namespace WebApplication1
             if (e.CommandName.Equals( "DeleteUser"))
             {
                 this.lblDeleteUserId.Text = userId;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#DeleteUserModal').modal(); ", true);
+                this.DeleteUserModal.Style["display"] = "block";
             }
             else if (e.CommandName.Equals("EditUser"))
             {
                 this.txtEditUserEmail.Text = email;
                 this.txtEditUserPassword.Text = password;
                 this.lblUserId.Text = userId;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#EditUserModal').modal(); ", true);
+                this.EditUserModal.Style["display"] = "block";
+                //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#EditUserModal').modal(); ", true);
             }
             else
             {
@@ -66,16 +67,27 @@ namespace WebApplication1
             string returnString;
             string userEmail = Request.Form["email"];
             string userPassword = Request.Form["password"];
-            Console.WriteLine(userEmail, userPassword);
-            ServiceReference2.Service1Client client = new ServiceReference2.Service1Client();
-            returnString = client.InsertUserDetails(userEmail, userPassword);
-            if(returnString.Equals("Please use a different email"))
+            if (userEmail.Equals("") && userPassword.Equals(""))
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + returnString + "');", true);
-                return;
+                this.lblCreateUserError.Text = "Invalid input. Please enter email and password";
             }
-            this.lblRegisterResult.Text = returnString;
-            this.AddRowToTable();
+            else
+            {
+                ServiceReference2.Service1Client client = new ServiceReference2.Service1Client();
+                returnString = client.InsertUserDetails(userEmail, userPassword);
+                if (returnString.Equals("Please use a different email"))
+                {
+                    this.lblCreateUserError.Text = returnString;
+                    //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + returnString + "');", true);
+                    return;
+                }
+                else
+                {
+                    this.createUserModal.Style["display"] = "none";
+                    this.lblCreateUserError.Text = "";
+                    this.AddRowToTable();
+                }
+            }
         }
 
         protected void EditRow(object sender, EventArgs e)
@@ -84,23 +96,31 @@ namespace WebApplication1
             string updatedUserEmail = txtEditUserEmail.Text;
             string updateUserPassword = txtEditUserPassword.Text;
             int userId = Convert.ToInt32(this.lblUserId.Text);
-            ServiceReference2.Service1Client client = new ServiceReference2.Service1Client();
-            returnString = client.UpdateUser(updatedUserEmail, updateUserPassword, userId);
-            if (returnString.Equals("This email has been registered"))
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + returnString + "');", true);
-                return;
+            if (updatedUserEmail.Equals("") || updateUserPassword.Equals("")){
+                this.Label1.Text = "Invalid input. Please enter email and password in correct format";
             }
-            this.lblRegisterResult.Text = returnString;
-            this.AddRowToTable();
+            else {
+                ServiceReference2.Service1Client client = new ServiceReference2.Service1Client();
+                returnString = client.UpdateUser(updatedUserEmail, updateUserPassword, userId);
+                if (returnString.Equals("This email has been registered"))
+                {
+                    this.Label1.Text = returnString;
+                }
+                else
+                {
+                    this.Label1.Text = "";
+                    this.EditUserModal.Style["display"] = "none";
+                    this.AddRowToTable();
+                }
+            }
         }
         protected void DeleteRow(object sender, EventArgs e)
         {
             string returnString; 
             int userId = Convert.ToInt32(this.lblDeleteUserId.Text);
             ServiceReference2.Service1Client client = new ServiceReference2.Service1Client();
-            returnString = client.DeleteUser(userId);
-            this.lblRegisterResult.Text = returnString;
+            client.DeleteUser(userId);
+            this.DeleteUserModal.Style["display"] = "none";
             this.AddRowToTable();
         }
 
@@ -113,5 +133,26 @@ namespace WebApplication1
         {
             Response.Redirect("~/machine.aspx");
         }
+
+        protected void btnShowPopup_Click(object sender, EventArgs e)
+        {
+            createUserModal.Style["display"] = "block";
+        }
+        protected void btnCloseCreateUserPopup_Click(object sender, EventArgs e)
+        {
+            this.createUserModal.Style["display"] = "none";
+            this.lblCreateUserError.Text = "";
+        }
+        protected void btnCloseEditUserPopup_Click(object sender, EventArgs e)
+        {
+            this.EditUserModal.Style["display"] = "none";
+            this.Label1.Text = "";
+        }
+        protected void btnCloseDeleteUserPopup_Click(object sender, EventArgs e)
+        {
+            this.DeleteUserModal.Style["display"] = "none";
+            this.lblDeleteUserId.Text = "";
+        }
+
     }
 }

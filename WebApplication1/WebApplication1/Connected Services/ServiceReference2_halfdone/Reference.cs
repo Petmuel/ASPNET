@@ -8,12 +8,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1.ServiceReference2 {
+namespace WebApplication1.ServiceReference2_halfdone {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference2.IService1")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference2_halfdone.IService1")]
     public interface IService1 {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUpdate", ReplyAction="http://tempuri.org/IService1/GetUpdateResponse")]
+        System.Data.DataTable GetUpdate();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUpdate", ReplyAction="http://tempuri.org/IService1/GetUpdateResponse")]
+        System.Threading.Tasks.Task<System.Data.DataTable> GetUpdateAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/InsertUserDetails", ReplyAction="http://tempuri.org/IService1/InsertUserDetailsResponse")]
         string InsertUserDetails(string email, string pass);
@@ -71,12 +77,12 @@ namespace WebApplication1.ServiceReference2 {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IService1Channel : WebApplication1.ServiceReference2.IService1, System.ServiceModel.IClientChannel {
+    public interface IService1Channel : WebApplication1.ServiceReference2_halfdone.IService1, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class Service1Client : System.ServiceModel.ClientBase<WebApplication1.ServiceReference2.IService1>, WebApplication1.ServiceReference2.IService1 {
+    public partial class Service1Client : System.ServiceModel.ClientBase<WebApplication1.ServiceReference2_halfdone.IService1>, WebApplication1.ServiceReference2_halfdone.IService1 {
         
         public Service1Client() {
         }
@@ -95,6 +101,14 @@ namespace WebApplication1.ServiceReference2 {
         
         public Service1Client(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public System.Data.DataTable GetUpdate() {
+            return base.Channel.GetUpdate();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> GetUpdateAsync() {
+            return base.Channel.GetUpdateAsync();
         }
         
         public string InsertUserDetails(string email, string pass) {

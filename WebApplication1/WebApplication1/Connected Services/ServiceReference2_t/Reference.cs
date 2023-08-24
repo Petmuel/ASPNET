@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1.ServiceReference2 {
+namespace WebApplication1.ServiceReference2_t {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference2.IService1")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference2_t.IService1")]
     public interface IService1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/InsertUserDetails", ReplyAction="http://tempuri.org/IService1/InsertUserDetailsResponse")]
@@ -71,12 +71,12 @@ namespace WebApplication1.ServiceReference2 {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IService1Channel : WebApplication1.ServiceReference2.IService1, System.ServiceModel.IClientChannel {
+    public interface IService1Channel : WebApplication1.ServiceReference2_t.IService1, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class Service1Client : System.ServiceModel.ClientBase<WebApplication1.ServiceReference2.IService1>, WebApplication1.ServiceReference2.IService1 {
+    public partial class Service1Client : System.ServiceModel.ClientBase<WebApplication1.ServiceReference2_t.IService1>, WebApplication1.ServiceReference2_t.IService1 {
         
         public Service1Client() {
         }
