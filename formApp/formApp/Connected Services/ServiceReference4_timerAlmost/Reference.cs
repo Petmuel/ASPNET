@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace formApp.ServiceReference4 {
+namespace formApp.ServiceReference4_timerAlmost {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference4.IService1")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference4_timerAlmost.IService1")]
     public interface IService1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/InsertUserDetails", ReplyAction="http://tempuri.org/IService1/InsertUserDetailsResponse")]
@@ -51,11 +51,11 @@ namespace formApp.ServiceReference4 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateMachine", ReplyAction="http://tempuri.org/IService1/CreateMachineResponse")]
         System.Threading.Tasks.Task<string> CreateMachineAsync(string machineName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateMachineName", ReplyAction="http://tempuri.org/IService1/UpdateMachineNameResponse")]
-        string UpdateMachineName(string machineName, int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateMachine", ReplyAction="http://tempuri.org/IService1/UpdateMachineResponse")]
+        string UpdateMachine(string machineName, int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateMachineName", ReplyAction="http://tempuri.org/IService1/UpdateMachineNameResponse")]
-        System.Threading.Tasks.Task<string> UpdateMachineNameAsync(string machineName, int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateMachine", ReplyAction="http://tempuri.org/IService1/UpdateMachineResponse")]
+        System.Threading.Tasks.Task<string> UpdateMachineAsync(string machineName, int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteMachine", ReplyAction="http://tempuri.org/IService1/DeleteMachineResponse")]
         string DeleteMachine(int id);
@@ -68,15 +68,21 @@ namespace formApp.ServiceReference4 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getAllMachine", ReplyAction="http://tempuri.org/IService1/getAllMachineResponse")]
         System.Threading.Tasks.Task<System.Data.DataTable> getAllMachineAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateMachinStatusWithDelay", ReplyAction="http://tempuri.org/IService1/UpdateMachinStatusWithDelayResponse")]
+        string UpdateMachinStatusWithDelay(int mId, string delay, string finalDelay);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateMachinStatusWithDelay", ReplyAction="http://tempuri.org/IService1/UpdateMachinStatusWithDelayResponse")]
+        System.Threading.Tasks.Task<string> UpdateMachinStatusWithDelayAsync(int mId, string delay, string finalDelay);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IService1Channel : formApp.ServiceReference4.IService1, System.ServiceModel.IClientChannel {
+    public interface IService1Channel : formApp.ServiceReference4_timerAlmost.IService1, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class Service1Client : System.ServiceModel.ClientBase<formApp.ServiceReference4.IService1>, formApp.ServiceReference4.IService1 {
+    public partial class Service1Client : System.ServiceModel.ClientBase<formApp.ServiceReference4_timerAlmost.IService1>, formApp.ServiceReference4_timerAlmost.IService1 {
         
         public Service1Client() {
         }
@@ -145,12 +151,12 @@ namespace formApp.ServiceReference4 {
             return base.Channel.CreateMachineAsync(machineName);
         }
         
-        public string UpdateMachineName(string machineName, int id) {
-            return base.Channel.UpdateMachineName(machineName, id);
+        public string UpdateMachine(string machineName, int id) {
+            return base.Channel.UpdateMachine(machineName, id);
         }
         
-        public System.Threading.Tasks.Task<string> UpdateMachineNameAsync(string machineName, int id) {
-            return base.Channel.UpdateMachineNameAsync(machineName, id);
+        public System.Threading.Tasks.Task<string> UpdateMachineAsync(string machineName, int id) {
+            return base.Channel.UpdateMachineAsync(machineName, id);
         }
         
         public string DeleteMachine(int id) {
@@ -167,6 +173,14 @@ namespace formApp.ServiceReference4 {
         
         public System.Threading.Tasks.Task<System.Data.DataTable> getAllMachineAsync() {
             return base.Channel.getAllMachineAsync();
+        }
+        
+        public string UpdateMachinStatusWithDelay(int mId, string delay, string finalDelay) {
+            return base.Channel.UpdateMachinStatusWithDelay(mId, delay, finalDelay);
+        }
+        
+        public System.Threading.Tasks.Task<string> UpdateMachinStatusWithDelayAsync(int mId, string delay, string finalDelay) {
+            return base.Channel.UpdateMachinStatusWithDelayAsync(mId, delay, finalDelay);
         }
     }
 }

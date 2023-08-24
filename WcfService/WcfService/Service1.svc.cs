@@ -7,24 +7,122 @@ using System.ServiceModel.Web;
 using System.Text;
 using System.Data.SqlClient;
 using System.Data;
+using System.Timers;
 
 namespace WcfService
 {
+    
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
+        private const string V = "Server=SAMUELHAN; Database=newDb; User Id=sa; Password=sasa;";
+        private Timer _timer;
         SqlConnection sqlConn = new SqlConnection();
+        private int randIndex;
+        private DataTable machines = new DataTable();
+        public Service1()
+        {
+            this.sqlConn.ConnectionString = V;
+
+            this.machines = this.getAllMachine();
+
+            if (this.machines.Rows.Count > 0)
+            {
+                if (this._timer==null||this._timer.Enabled)
+                {
+                    Random rnd = new Random();
+                    this.randIndex = rnd.Next(0, this.getAllMachine().Rows.Count);
+                    if (this._timer != null)
+                    {
+                        this._timer.Dispose();
+                        this._timer.Elapsed += null;
+                        this._timer.Stop();
+                        this._timer=null;
+                    }
+                    this.InitializeTimer();
+                }
+                else
+                {
+                    Random rnd = new Random();
+                    this.randIndex = rnd.Next(0, this.machines.Rows.Count);
+                    this.InitializeTimer();
+                }
+            }
+        }
+        private void InitializeTimer()
+        {
+            this._timer = new Timer();
+            this._timer.Interval = 15000; // 5000 milliseconds = 5 seconds
+            this._timer.Elapsed += TimerElapsed;
+            this._timer.AutoReset = false;
+            this._timer.Start();
+        }
+
+        private void TimerElapsed(object sender, ElapsedEventArgs e)
+        {
+                this.sqlConn.Close();
+                this.sqlConn.ConnectionString = V;
+                this.sqlConn.Open();
+                DataRow row = this.machines.Rows[this.randIndex];
+                int id = Convert.ToInt32(row["MachineID"]);
+                int status = Convert.ToInt32(row["MachineStatus"]);
+
+                // Set flag to prevent concurrent updates
+                this.UpdateMachineStatusRand(status, id);
+            
+            //if(this.index< this.machines.Rows.Count - 1)
+            //{
+            //    this.index++;
+            //    this.retrieveRow();
+            //}
+            //else
+            //{
+            //    this.index = -1;
+            //}
+        }
+        //public void GetUpdate()
+        //{
+        //    // Return the latest update
+        //    return GetLatestUpdate();
+        //} // These methods can be replaced with your actual data handling logic
+
+        //private void UpdateDataTable(DataTable t)
+        //{
+        //    this._latestMachines = t;
+        //}
+        //private void nextRow()
+        //{
+        //    this.index++;
+        //}
+
+        //private void retrieveRow()
+        //{
+        //    if (this.index >= this.machines.Rows.Count)
+        //    {
+        //        this.index = 0;
+        //    }
+        //    DataRow row = this.machines.Rows[this.index];
+        //    int id = Convert.ToInt32(row["MachineID"]);
+        //    int status = Convert.ToInt32(row["MachineStatus"]);
+        //    UpdateMachineStatusRand(status, id);
+        //}
+        //private void OnUpdateCompleted()
+        //{
+        //    this.isUpdating = false; // Allow next update
+        //    this.index++; // Move to next row
+        //}
 
         public string InsertUserDetails(string email, string password)
         {
-            this.sqlConn.ConnectionString = "Server=SAMUELHAN; Database=newDb; User Id=sa; Password=sasa;";
+            this.sqlConn.ConnectionString = V;
             sqlConn.Open();
             SqlCommand chkUsr = new SqlCommand("checkEmail", this.sqlConn);
             chkUsr.CommandType = CommandType.StoredProcedure;
             chkUsr.Parameters.Add("@userEmail", email);
             if ((int)chkUsr.ExecuteScalar() > 0) //email has been registered
             {
+                sqlConn.Close();
                 return "Please use a different email";
             }
             else //email is unique
@@ -32,6 +130,7 @@ namespace WcfService
                 sqlConn.Close();
                 return this.sqlProcedure("register", email, password);
             }
+            sqlConn.Close();
         }
         public string CheckUser(string email, string password)
         {
@@ -40,9 +139,8 @@ namespace WcfService
 
         public DataTable getAllUsers()
         {
-            this.sqlConn.ConnectionString = "Server=SAMUELHAN; Database=newDb; User Id=sa; Password=sasa;";
+            this.sqlConn.ConnectionString = V;
             sqlConn.Open();
-            
             SqlDataAdapter adapter = new SqlDataAdapter(); 
             adapter.SelectCommand = new SqlCommand("getAllUsers", this.sqlConn);
             adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -50,12 +148,13 @@ namespace WcfService
             DataSet ds = new DataSet();
             adapter.Fill(ds, "userTable");
             DataTable dt = ds.Tables["userTable"];
+            sqlConn.Close();
             return dt;
         }
 
         public string UpdateUser(string email, string password, int id)
         {
-            this.sqlConn.ConnectionString = "Server=SAMUELHAN; Database=newDb; User Id=sa; Password=sasa;";
+            this.sqlConn.ConnectionString = V;
             sqlConn.Open();
             SqlCommand chkUsr = new SqlCommand("checkEmail", this.sqlConn);
             chkUsr.CommandType = CommandType.StoredProcedure;
@@ -76,24 +175,25 @@ namespace WcfService
                 int result = sqlCmd.ExecuteNonQuery();
                 message = result == 1 ? "Successfully Updated" : "Update Failed";
             }
+            sqlConn.Close();
             return message;
         }
 
         public string DeleteUser(int id)
         {
-            this.sqlConn.ConnectionString = "Server=SAMUELHAN; Database=newDb; User Id=sa; Password=sasa;";
             sqlConn.Open();
             SqlCommand chkUsr = new SqlCommand("deleteUser", this.sqlConn);
             chkUsr.CommandType = CommandType.StoredProcedure;
             chkUsr.Parameters.Add("@userID", id);
             chkUsr.ExecuteNonQuery();
+            sqlConn.Close();
             return "User Deleted Successfully";
         }
         public string sqlProcedure(string procedureName, string userEmail, string userPassword)
         {
             //LAPTOP - 90E9I307
             string message="";
-            this.sqlConn.ConnectionString = "Server=SAMUELHAN; Database=newDb; User Id=sa; Password=sasa;";
+            this.sqlConn.ConnectionString = V;
             sqlConn.Open();
             string cmd = procedureName.Equals("login") ? "checkUser" : "createUser";  //two procedures
             SqlCommand sqlCmd = new SqlCommand(cmd, this.sqlConn);  //call stored procedure and add input into parameter 
@@ -118,13 +218,14 @@ namespace WcfService
         public string CreateMachine(string name)
         {
             string message;
-            this.sqlConn.ConnectionString = "Server=SAMUELHAN; Database=newDb; User Id=sa; Password=sasa;";
+            this.sqlConn.ConnectionString = V;
             sqlConn.Open();
             SqlCommand chkM = new SqlCommand("checkMachine", this.sqlConn);
             chkM.CommandType = CommandType.StoredProcedure;
             chkM.Parameters.Add("@mName", name);
             if ((int)chkM.ExecuteScalar() > 0) //email is unique
             {
+                sqlConn.Close();
                 return "Please use a different machine name";
             }
             else ////email has been registered
@@ -133,12 +234,25 @@ namespace WcfService
                 addM.CommandType = CommandType.StoredProcedure;
                 addM.Parameters.Add("@mName", name);
                 message = addM.ExecuteNonQuery() == 1 ? "Machine Created Successfully" : "Failed to create machine";
+                sqlConn.Close();
                 return message;
             }
         }
-        public string UpdateMachine(string machineName, int id)
+        public void UpdateMachineStatusRand(int status, int id)
         {
-            this.sqlConn.ConnectionString = "Server=SAMUELHAN; Database=newDb; User Id=sa; Password=sasa;";
+            Random rStatus = new Random();
+            int newStatus = rStatus.Next(1, 3);
+            SqlCommand upMS = new SqlCommand("updateMachineStatus", this.sqlConn);
+            upMS.CommandType = CommandType.StoredProcedure;
+            upMS.Parameters.Add("@mStatus", newStatus);
+            upMS.Parameters.Add("@mId", id);
+            upMS.ExecuteNonQuery();
+            this.sqlConn.Close();
+            //this.OnUpdateCompleted();
+        }
+        public string UpdateMachineName(string machineName, int id)
+        {    
+            this.sqlConn.ConnectionString = V;
             sqlConn.Open();
             SqlCommand chkM = new SqlCommand("checkMachine", this.sqlConn);
             chkM.CommandType = CommandType.StoredProcedure;
@@ -158,24 +272,25 @@ namespace WcfService
                 int result = sqlCmd.ExecuteNonQuery();
                 message = result == 1 ? "Successfully Updated" : "Update Failed";
             }
+            sqlConn.Close();
             return message;
         }
         public string DeleteMachine(int id)
         {
-            this.sqlConn.ConnectionString = "Server=SAMUELHAN; Database=newDb; User Id=sa; Password=sasa;";
+            this.sqlConn.ConnectionString = V;
             sqlConn.Open();
             SqlCommand chkUsr = new SqlCommand("deleteMachine", this.sqlConn);
             chkUsr.CommandType = CommandType.StoredProcedure;
             chkUsr.Parameters.Add("@mId", id);
             chkUsr.ExecuteNonQuery();
+            sqlConn.Close();
             return "Machine Deleted Successfully";
         }
 
         public DataTable getAllMachine()
         {
-            this.sqlConn.ConnectionString = "Server=SAMUELHAN; Database=newDb; User Id=sa; Password=sasa;";
-            sqlConn.Open();
-
+            //System.Threading.Thread.Sleep(3000);
+            this.sqlConn.Open();
             SqlDataAdapter adapter = new SqlDataAdapter();
             adapter.SelectCommand = new SqlCommand("getAllMachine", this.sqlConn);
             adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -183,43 +298,44 @@ namespace WcfService
             DataSet ds = new DataSet();
             adapter.Fill(ds, "machineTable");
             DataTable dt = ds.Tables["machineTable"];
+            this.sqlConn.Close();
             return dt;
         }
 
-        public string UpdateMachinStatusWithDelay(int mId, string delay, string finalDelay)
-        {
-            int retrievedStatus = int.Parse(this.getMachineStatus(mId));
-            string message;
-            this.sqlConn.ConnectionString = "Server=SAMUELHAN; Database=newDb; User Id=sa; Password=sasa;";
-            sqlConn.Open();
-            int updatedMStatus = retrievedStatus == 1 ? 2 : 1;
-            SqlCommand statusCmd = new SqlCommand("updateMachineStatus", this.sqlConn);
-            statusCmd.CommandType = CommandType.StoredProcedure;
-            statusCmd.Parameters.Add("@mId", mId);
-            statusCmd.Parameters.Add("@mStatus", updatedMStatus);
-            statusCmd.Parameters.AddWithValue("@delay", delay);
-            int result = statusCmd.ExecuteNonQuery(); 
-            if (result == 1)
-            {
-                SqlCommand chkStatus = new SqlCommand("checkUpdatedMachineStatus", this.sqlConn);
-                chkStatus.CommandType = CommandType.StoredProcedure;
-                chkStatus.Parameters.Add("@mId", mId);
-                chkStatus.Parameters.Add("@mStatus", updatedMStatus);
-                chkStatus.Parameters.Add("@delay", finalDelay);
-                message = (int)chkStatus.ExecuteScalar() > 0 ? "Successfully Updated" : "Update not completed";
-            }
-            else
-            {
-                message = "Update Failed";
-            }
-            return message;
-        }
+        //public string UpdateMachinStatusWithDelay(int mId, string delay, string finalDelay)
+        //{
+        //    int retrievedStatus = int.Parse(this.getMachineStatus(mId));
+        //    string message;
+        //    this.sqlConn.ConnectionString = "Server=SAMUELHAN; Database=newDb; User Id=sa; Password=sasa;";
+        //    sqlConn.Open();
+        //    int updatedMStatus = retrievedStatus == 1 ? 2 : 1;
+        //    SqlCommand statusCmd = new SqlCommand("updateMachineStatus", this.sqlConn);
+        //    statusCmd.CommandType = CommandType.StoredProcedure;
+        //    statusCmd.Parameters.Add("@mId", mId);
+        //    statusCmd.Parameters.Add("@mStatus", updatedMStatus);
+        //    statusCmd.Parameters.AddWithValue("@delay", delay);
+        //    int result = statusCmd.ExecuteNonQuery(); 
+        //    if (result == 1)
+        //    {
+        //        SqlCommand chkStatus = new SqlCommand("checkUpdatedMachineStatus", this.sqlConn);
+        //        chkStatus.CommandType = CommandType.StoredProcedure;
+        //        chkStatus.Parameters.Add("@mId", mId);
+        //        chkStatus.Parameters.Add("@mStatus", updatedMStatus);
+        //        chkStatus.Parameters.Add("@delay", finalDelay);
+        //        message = (int)chkStatus.ExecuteScalar() > 0 ? "Successfully Updated" : "Update not completed";
+        //    }
+        //    else
+        //    {
+        //        message = "Update Failed";
+        //    }
+        //    return message;
+        //}
         public string getMachineStatus(int mId)
         {
             string message;
             this.sqlConn.ConnectionString = "Server=SAMUELHAN; Database=newDb; User Id=sa; Password=sasa;";
             sqlConn.Open();
-            string result="";
+            string result = "";
             SqlCommand getStatusCmd = new SqlCommand("getMachineStatus", this.sqlConn);
             getStatusCmd.CommandType = CommandType.StoredProcedure;
             getStatusCmd.Parameters.Add("@mId", mId);
@@ -232,7 +348,6 @@ namespace WcfService
             sqlConn.Close();
             return result;
         }
-
 
     }
 }

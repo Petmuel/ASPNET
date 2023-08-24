@@ -30,70 +30,16 @@ namespace formApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnConfirm = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtTimer = new System.Windows.Forms.TextBox();
-            this.txtFinalTimer = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.mID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblSelectedMachineID = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.loadingPictureBox = new System.Windows.Forms.PictureBox();
-            this.lblMachineId = new System.Windows.Forms.Label();
-            this.lblResult = new System.Windows.Forms.Label();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.loadingPictureBox)).BeginInit();
+            this.lblDateTime = new System.Windows.Forms.Label();
+            this.lblTimerCHange = new System.Windows.Forms.Label();
+            this.txtTimer = new System.Windows.Forms.TextBox();
+            this.btnTimerSet = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnConfirm
-            // 
-            this.btnConfirm.Location = new System.Drawing.Point(701, 109);
-            this.btnConfirm.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(96, 35);
-            this.btnConfirm.TabIndex = 0;
-            this.btnConfirm.Text = "Confirm";
-            this.btnConfirm.UseVisualStyleBackColor = true;
-            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(599, 109);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(96, 35);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(595, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(221, 40);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Enter Timer (Seconds)\r\nUpdate Status   Check Status\r\n";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // txtTimer
-            // 
-            this.txtTimer.Location = new System.Drawing.Point(599, 76);
-            this.txtTimer.Name = "txtTimer";
-            this.txtTimer.Size = new System.Drawing.Size(96, 26);
-            this.txtTimer.TabIndex = 3;
-            // 
-            // txtFinalTimer
-            // 
-            this.txtFinalTimer.Location = new System.Drawing.Point(701, 76);
-            this.txtFinalTimer.Name = "txtFinalTimer";
-            this.txtFinalTimer.Size = new System.Drawing.Size(96, 26);
-            this.txtFinalTimer.TabIndex = 4;
-            this.txtFinalTimer.TextChanged += new System.EventHandler(this.txtFinalTimer_TextChanged);
             // 
             // listView1
             // 
@@ -127,96 +73,72 @@ namespace formApp
             this.status.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.status.Width = 124;
             // 
-            // lblSelectedMachineID
-            // 
-            this.lblSelectedMachineID.AutoSize = true;
-            this.lblSelectedMachineID.Location = new System.Drawing.Point(599, 12);
-            this.lblSelectedMachineID.Name = "lblSelectedMachineID";
-            this.lblSelectedMachineID.Size = new System.Drawing.Size(94, 20);
-            this.lblSelectedMachineID.TabIndex = 6;
-            this.lblSelectedMachineID.Text = "Machine ID:";
-            // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // loadingPictureBox
+            // lblDateTime
             // 
-            this.loadingPictureBox.Image = global::formApp.Properties.Resources.loadingIcon_gif;
-            this.loadingPictureBox.Location = new System.Drawing.Point(803, 76);
-            this.loadingPictureBox.Name = "loadingPictureBox";
-            this.loadingPictureBox.Size = new System.Drawing.Size(75, 75);
-            this.loadingPictureBox.TabIndex = 7;
-            this.loadingPictureBox.TabStop = false;
+            this.lblDateTime.AutoSize = true;
+            this.lblDateTime.Location = new System.Drawing.Point(593, 22);
+            this.lblDateTime.Name = "lblDateTime";
+            this.lblDateTime.Size = new System.Drawing.Size(0, 20);
+            this.lblDateTime.TabIndex = 6;
             // 
-            // lblMachineId
+            // lblTimerCHange
             // 
-            this.lblMachineId.Location = new System.Drawing.Point(697, 12);
-            this.lblMachineId.Name = "lblMachineId";
-            this.lblMachineId.Size = new System.Drawing.Size(51, 20);
-            this.lblMachineId.TabIndex = 0;
+            this.lblTimerCHange.AutoSize = true;
+            this.lblTimerCHange.Location = new System.Drawing.Point(597, 46);
+            this.lblTimerCHange.Name = "lblTimerCHange";
+            this.lblTimerCHange.Size = new System.Drawing.Size(193, 20);
+            this.lblTimerCHange.TabIndex = 7;
+            this.lblTimerCHange.Text = "Change Timer (Seconds): ";
             // 
-            // lblResult
+            // txtTimer
             // 
-            this.lblResult.AutoSize = true;
-            this.lblResult.Location = new System.Drawing.Point(599, 147);
-            this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(0, 20);
-            this.lblResult.TabIndex = 8;
-            this.lblResult.Click += new System.EventHandler(this.label2_Click);
+            this.txtTimer.Location = new System.Drawing.Point(788, 46);
+            this.txtTimer.Name = "txtTimer";
+            this.txtTimer.Size = new System.Drawing.Size(100, 26);
+            this.txtTimer.TabIndex = 8;
             // 
-            // btnRefresh
+            // btnTimerSet
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(599, 146);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(99, 45);
-            this.btnRefresh.TabIndex = 9;
-            this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            this.btnTimerSet.Location = new System.Drawing.Point(613, 87);
+            this.btnTimerSet.Name = "btnTimerSet";
+            this.btnTimerSet.Size = new System.Drawing.Size(75, 33);
+            this.btnTimerSet.TabIndex = 9;
+            this.btnTimerSet.Text = "Set";
+            this.btnTimerSet.UseVisualStyleBackColor = true;
+            this.btnTimerSet.Click += new System.EventHandler(this.btnTimerSet_Click);
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 562);
-            this.Controls.Add(this.btnRefresh);
-            this.Controls.Add(this.lblResult);
-            this.Controls.Add(this.lblMachineId);
-            this.Controls.Add(this.loadingPictureBox);
-            this.Controls.Add(this.lblSelectedMachineID);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.txtFinalTimer);
+            this.Controls.Add(this.btnTimerSet);
             this.Controls.Add(this.txtTimer);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnConfirm);
+            this.Controls.Add(this.lblTimerCHange);
+            this.Controls.Add(this.lblDateTime);
+            this.Controls.Add(this.listView1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.loadingPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnConfirm;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtTimer;
-        private System.Windows.Forms.TextBox txtFinalTimer;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader mID;
         private System.Windows.Forms.ColumnHeader mName;
         private System.Windows.Forms.ColumnHeader status;
-        private System.Windows.Forms.Label lblSelectedMachineID;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.PictureBox loadingPictureBox;
-        private System.Windows.Forms.Label lblMachineId;
-        private System.Windows.Forms.Label lblResult;
-        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Label lblDateTime;
+        private System.Windows.Forms.Label lblTimerCHange;
+        private System.Windows.Forms.TextBox txtTimer;
+        private System.Windows.Forms.Button btnTimerSet;
     }
 }

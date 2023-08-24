@@ -98,7 +98,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UpdateMachineName">
+  <xs:element name="UpdateMachine">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="machineName" nillable="true" type="xs:string" />
@@ -106,10 +106,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UpdateMachineNameResponse">
+  <xs:element name="UpdateMachineResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="UpdateMachineNameResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="UpdateMachineResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -148,6 +148,22 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateMachinStatusWithDelay">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="mId" type="xs:int" />
+        <xs:element minOccurs="0" name="delay" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="finalDelay" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateMachinStatusWithDelayResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateMachinStatusWithDelayResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

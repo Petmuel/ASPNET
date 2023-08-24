@@ -10,9 +10,11 @@ using System.Text;
 namespace WcfService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
+    
     [ServiceContract]
     public interface IService1
     {
+
         [OperationContract]
         string InsertUserDetails(string email, string pass);
 
@@ -32,7 +34,7 @@ namespace WcfService
         string CreateMachine(string machineName);
 
         [OperationContract]
-        string UpdateMachine(string machineName, int id);
+        string UpdateMachineName(string machineName, int id);
 
         [OperationContract]
         string DeleteMachine(int id);
@@ -40,9 +42,12 @@ namespace WcfService
         [OperationContract]
         DataTable getAllMachine();
 
-        [OperationContract]
-        string UpdateMachinStatusWithDelay(int mId, string delay, string finalDelay);
-        
+        //[OperationContract]
+        //void changeTimer(int seconds);
+
+        //[OperationContract]
+        //string UpdateMachinStatusWithDelay(int mId, string delay, string finalDelay);
+
     }
 
 

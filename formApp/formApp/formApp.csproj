@@ -68,6 +68,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\ServiceReference4_timerAlmost\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\ServiceReference4_notimer\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -134,6 +139,16 @@
     <None Include="Connected Services\ServiceReference4\Service12.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ServiceReference4_timerAlmost\Service1.wsdl" />
+    <None Include="Connected Services\ServiceReference4_timerAlmost\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference4_timerAlmost\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference4_timerAlmost\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ServiceReference4_notimer\Service1.wsdl" />
     <None Include="Connected Services\ServiceReference4_notimer\Service1.xsd">
       <SubType>Designer</SubType>
@@ -166,6 +181,7 @@
     <WCFMetadataStorage Include="Connected Services\ServiceReference2\" />
     <WCFMetadataStorage Include="Connected Services\ServiceReference3\" />
     <WCFMetadataStorage Include="Connected Services\ServiceReference4\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReference4_timerAlmost\" />
     <WCFMetadataStorage Include="Connected Services\ServiceReference4_notimer\" />
   </ItemGroup>
   <ItemGroup>
@@ -230,6 +246,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="asset\loadingIcon.gif.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference4_timerAlmost\Service1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference4_timerAlmost\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference4_timerAlmost\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference4_timerAlmost\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\ServiceReference4\Service1.disco" />

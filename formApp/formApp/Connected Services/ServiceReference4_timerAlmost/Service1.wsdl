@@ -43,11 +43,11 @@
   <wsdl:message name="IService1_CreateMachine_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateMachineResponse" />
   </wsdl:message>
-  <wsdl:message name="IService1_UpdateMachineName_InputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateMachineName" />
+  <wsdl:message name="IService1_UpdateMachine_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMachine" />
   </wsdl:message>
-  <wsdl:message name="IService1_UpdateMachineName_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateMachineNameResponse" />
+  <wsdl:message name="IService1_UpdateMachine_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMachineResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_DeleteMachine_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteMachine" />
@@ -60,6 +60,12 @@
   </wsdl:message>
   <wsdl:message name="IService1_getAllMachine_OutputMessage">
     <wsdl:part name="parameters" element="tns:getAllMachineResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateMachinStatusWithDelay_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMachinStatusWithDelay" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateMachinStatusWithDelay_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMachinStatusWithDelayResponse" />
   </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="InsertUserDetails">
@@ -86,9 +92,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateMachine" message="tns:IService1_CreateMachine_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateMachineResponse" message="tns:IService1_CreateMachine_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="UpdateMachineName">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateMachineName" message="tns:IService1_UpdateMachineName_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateMachineNameResponse" message="tns:IService1_UpdateMachineName_OutputMessage" />
+    <wsdl:operation name="UpdateMachine">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateMachine" message="tns:IService1_UpdateMachine_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateMachineResponse" message="tns:IService1_UpdateMachine_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteMachine">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteMachine" message="tns:IService1_DeleteMachine_InputMessage" />
@@ -97,6 +103,10 @@
     <wsdl:operation name="getAllMachine">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/getAllMachine" message="tns:IService1_getAllMachine_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/getAllMachineResponse" message="tns:IService1_getAllMachine_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMachinStatusWithDelay">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateMachinStatusWithDelay" message="tns:IService1_UpdateMachinStatusWithDelay_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateMachinStatusWithDelayResponse" message="tns:IService1_UpdateMachinStatusWithDelay_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -155,8 +165,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateMachineName">
-      <soap:operation soapAction="http://tempuri.org/IService1/UpdateMachineName" style="document" />
+    <wsdl:operation name="UpdateMachine">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateMachine" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -175,6 +185,15 @@
     </wsdl:operation>
     <wsdl:operation name="getAllMachine">
       <soap:operation soapAction="http://tempuri.org/IService1/getAllMachine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMachinStatusWithDelay">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateMachinStatusWithDelay" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
