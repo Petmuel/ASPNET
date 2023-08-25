@@ -15,6 +15,18 @@ namespace WebApplication1.ServiceReference2 {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference2.IService1")]
     public interface IService1 {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/logout", ReplyAction="http://tempuri.org/IService1/logoutResponse")]
+        void logout();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/logout", ReplyAction="http://tempuri.org/IService1/logoutResponse")]
+        System.Threading.Tasks.Task logoutAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/checkLoggedInUser", ReplyAction="http://tempuri.org/IService1/checkLoggedInUserResponse")]
+        string checkLoggedInUser();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/checkLoggedInUser", ReplyAction="http://tempuri.org/IService1/checkLoggedInUserResponse")]
+        System.Threading.Tasks.Task<string> checkLoggedInUserAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/InsertUserDetails", ReplyAction="http://tempuri.org/IService1/InsertUserDetailsResponse")]
         string InsertUserDetails(string email, string pass);
         
@@ -95,6 +107,22 @@ namespace WebApplication1.ServiceReference2 {
         
         public Service1Client(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public void logout() {
+            base.Channel.logout();
+        }
+        
+        public System.Threading.Tasks.Task logoutAsync() {
+            return base.Channel.logoutAsync();
+        }
+        
+        public string checkLoggedInUser() {
+            return base.Channel.checkLoggedInUser();
+        }
+        
+        public System.Threading.Tasks.Task<string> checkLoggedInUserAsync() {
+            return base.Channel.checkLoggedInUserAsync();
         }
         
         public string InsertUserDetails(string email, string pass) {

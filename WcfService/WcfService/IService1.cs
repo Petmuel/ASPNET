@@ -14,6 +14,14 @@ namespace WcfService
     [ServiceContract]
     public interface IService1
     {
+        [OperationContract]
+        void logout();
+
+        [OperationContract]
+        string checkLoggedInUser();
+
+        [OperationContract]
+        DataTable getAllLogs();
 
         [OperationContract]
         string InsertUserDetails(string email, string pass);

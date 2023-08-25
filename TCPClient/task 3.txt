@@ -1,0 +1,22 @@
+Task 1
+homepage webpage - add user table(can edit and delete)
+DONE create editUser procedure
+DONE create deleteUser procedure
+DONE add getAllUser procedure to webpage
+
+DONE add button next to input form, 
+DONE update the user table in page linked to machine webpage
+machine webpage (machine CRUD)(only can edit the machine name)
+
+Task 2
+run timer(manually add time) to update machine status
+another timer(manually add time too) to get the status and display color
+(status 1: green, 2: blue)
+Loading symbol is suggested to display while the timer is running
+
+
+
+
+DONE database - create table (machine table) ID, MachineName, status
+DONE create addMachine procedure
+ 

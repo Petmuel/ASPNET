@@ -1,0 +1,32 @@
+C:\Users\rexle\source\repos\2 August 2023\formApp\formApp\obj\Debug\formApp.csproj.AssemblyReference.cache
+C:\Users\rexle\source\repos\2 August 2023\formApp\formApp\obj\Debug\formApp.Form1.resources
+C:\Users\rexle\source\repos\2 August 2023\formApp\formApp\obj\Debug\formApp.Properties.Resources.resources
+C:\Users\rexle\source\repos\2 August 2023\formApp\formApp\obj\Debug\formApp.csproj.GenerateResource.cache
+C:\Users\rexle\source\repos\2 August 2023\formApp\formApp\obj\Debug\formApp.csproj.CoreCompileInputs.cache
+C:\Users\rexle\source\repos\2 August 2023\formApp\formApp\bin\Debug\formApp.exe.config
+C:\Users\rexle\source\repos\2 August 2023\formApp\formApp\bin\Debug\formApp.exe
+C:\Users\rexle\source\repos\2 August 2023\formApp\formApp\bin\Debug\formApp.pdb
+C:\Users\rexle\source\repos\2 August 2023\formApp\formApp\obj\Debug\formApp.exe
+C:\Users\rexle\source\repos\2 August 2023\formApp\formApp\obj\Debug\formApp.pdb
+C:\Users\samue\OneDrive\Desktop\ASP.Net\formApp\formApp\bin\Debug\formApp.exe.config
+C:\Users\samue\OneDrive\Desktop\ASP.Net\formApp\formApp\bin\Debug\formApp.exe
+C:\Users\samue\OneDrive\Desktop\ASP.Net\formApp\formApp\bin\Debug\formApp.pdb
+C:\Users\samue\OneDrive\Desktop\ASP.Net\formApp\formApp\obj\Debug\formApp.csproj.AssemblyReference.cache
+C:\Users\samue\OneDrive\Desktop\ASP.Net\formApp\formApp\obj\Debug\formApp.Form1.resources
+C:\Users\samue\OneDrive\Desktop\ASP.Net\formApp\formApp\obj\Debug\formApp.Form2.resources
+C:\Users\samue\OneDrive\Desktop\ASP.Net\formApp\formApp\obj\Debug\formApp.Properties.Resources.resources
+C:\Users\samue\OneDrive\Desktop\ASP.Net\formApp\formApp\obj\Debug\formApp.csproj.GenerateResource.cache
+C:\Users\samue\OneDrive\Desktop\ASP.Net\formApp\formApp\obj\Debug\formApp.csproj.CoreCompileInputs.cache
+C:\Users\samue\OneDrive\Desktop\ASP.Net\formApp\formApp\obj\Debug\formApp.exe
+C:\Users\samue\OneDrive\Desktop\ASP.Net\formApp\formApp\obj\Debug\formApp.pdb
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient\formApp\obj\Debug\formApp.csproj.AssemblyReference.cache
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient\formApp\obj\Debug\formApp.Form1.resources
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient\formApp\obj\Debug\formApp.Properties.Resources.resources
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient\formApp\obj\Debug\formApp.csproj.GenerateResource.cache
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient\formApp\obj\Debug\formApp.csproj.CoreCompileInputs.cache
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient\formApp\obj\Debug\formApp.exe
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient\formApp\obj\Debug\formApp.pdb
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient\formApp\bin\Debug\formApp.exe.config
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient\formApp\bin\Debug\formApp.exe
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient\formApp\bin\Debug\formApp.pdb
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient\formApp\obj\Debug\formApp.Form2.resources

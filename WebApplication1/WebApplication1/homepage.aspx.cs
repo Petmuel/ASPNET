@@ -16,8 +16,16 @@ namespace WebApplication1
         {
             if (!IsPostBack)
             {
+                ServiceReference2.Service1Client client = new ServiceReference2.Service1Client();
+                if (client.checkLoggedInUser().Equals(""))
+                {
+                    //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Please login first" + "');", true);
+                    Response.Redirect("~/login.aspx");
+                    return;
+                }
                 this.AddRowToTable();
             }
+
         }
 
         protected void userTable_OnRowCommand(object sender, GridViewCommandEventArgs e)
@@ -126,6 +134,8 @@ namespace WebApplication1
 
         protected void SignOut_Click(object sender, EventArgs e)
         {
+            ServiceReference2.Service1Client client = new ServiceReference2.Service1Client();
+            client.logout();
             Response.Redirect("~/login.aspx");
         }
 

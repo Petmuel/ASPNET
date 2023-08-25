@@ -19,6 +19,12 @@ namespace WebApplication1
             _client = new ServiceReference2.Service1Client();
             if (!IsPostBack)
             {
+                if (_client.checkLoggedInUser().Equals(""))
+                {
+                    //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Please login first" + "');", true);
+                    Response.Redirect("~/login.aspx");
+                    return;
+                }
                 this.AddRowToTable();
                 UpdateTimestamp();
             }

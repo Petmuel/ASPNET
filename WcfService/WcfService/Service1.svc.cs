@@ -17,9 +17,10 @@ namespace WcfService
     public class Service1 : IService1
     {
         private const string V = "Server=SAMUELHAN; Database=newDb; User Id=sa; Password=sasa;";
-        private Timer _timer;
+        public Timer _timer;
         SqlConnection sqlConn = new SqlConnection();
         private int randIndex;
+        public string userEmailLoggedIn="";
         private DataTable machines = new DataTable();
         public Service1()
         {
@@ -50,7 +51,7 @@ namespace WcfService
                 }
             }
         }
-        private void InitializeTimer()
+        public void InitializeTimer()
         {
             this._timer = new Timer();
             this._timer.Interval = 15000; // 5000 milliseconds = 5 seconds
@@ -59,7 +60,7 @@ namespace WcfService
             this._timer.Start();
         }
 
-        private void TimerElapsed(object sender, ElapsedEventArgs e)
+        public void TimerElapsed(object sender, ElapsedEventArgs e)
         {
                 this.sqlConn.Close();
                 this.sqlConn.ConnectionString = V;
@@ -112,7 +113,53 @@ namespace WcfService
         //    this.isUpdating = false; // Allow next update
         //    this.index++; // Move to next row
         //}
+        public void login(string email)
+        {
+            SqlCommand login = new SqlCommand("changeUserLoginEmail", this.sqlConn);
+            login.CommandType = CommandType.StoredProcedure;
+            login.Parameters.Add("@email", email);
+            login.ExecuteNonQuery();
+        }
+        public void logout()
+        {
+            this.sqlConn.Open();
+            string activity = "Admin (" + this.checkLoggedInUser() + ") signed out successfully.";
+            this.logActivity(activity);
+            SqlCommand login = new SqlCommand("changeUserLoginEmail", this.sqlConn);
+            login.CommandType = CommandType.StoredProcedure;
+            login.Parameters.Add("@email", "");
+            login.ExecuteNonQuery();
+            this.sqlConn.Close();
+        }
 
+        public DataTable getAllLogs()
+        {
+            this.sqlConn.ConnectionString = V;
+            sqlConn.Open();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            adapter.SelectCommand = new SqlCommand("getAllLogs", this.sqlConn);
+            adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            DataTable dataTable = new DataTable();
+            DataSet ds = new DataSet();
+            adapter.Fill(ds, "logTable");
+            DataTable dt = ds.Tables["logTable"];
+            sqlConn.Close();
+            return dt;
+        }
+        public string checkLoggedInUser()
+        {
+            this.sqlConn.Close();
+            this.sqlConn.Open();
+            string email;
+            SqlCommand login = new SqlCommand("getUserLogin", this.sqlConn);
+            login.CommandType = CommandType.StoredProcedure;
+            SqlDataReader reader = login.ExecuteReader();
+            reader.Read();
+            email = reader["UserEmail"].ToString();
+            this.sqlConn.Close();
+            this.sqlConn.Open();
+            return email;
+        }
         public string InsertUserDetails(string email, string password)
         {
             this.sqlConn.ConnectionString = V;
@@ -131,6 +178,16 @@ namespace WcfService
                 return this.sqlProcedure("register", email, password);
             }
             sqlConn.Close();
+        }
+
+        public void logActivity(string activity)
+        {
+            SqlCommand addLog = new SqlCommand("addLog", this.sqlConn);
+            addLog.CommandType = CommandType.StoredProcedure;
+            addLog.Parameters.Add("@logEmail", this.checkLoggedInUser());
+            addLog.Parameters.Add("@logDateTime", DateTime.Now.ToString());
+            addLog.Parameters.Add("@logActivity", activity);
+            addLog.ExecuteNonQuery();
         }
         public string CheckUser(string email, string password)
         {
@@ -174,6 +231,8 @@ namespace WcfService
                 sqlCmd.Parameters.Add("@userId", id);
                 int result = sqlCmd.ExecuteNonQuery();
                 message = result == 1 ? "Successfully Updated" : "Update Failed";
+                string activity = "Admin (" + this.checkLoggedInUser() + ") updated a user detail (new email: " + email + ", new password: " + password + ").";
+                this.logActivity(activity);
             }
             sqlConn.Close();
             return message;
@@ -186,6 +245,8 @@ namespace WcfService
             chkUsr.CommandType = CommandType.StoredProcedure;
             chkUsr.Parameters.Add("@userID", id);
             chkUsr.ExecuteNonQuery();
+            string activity = "Admin (" + this.checkLoggedInUser() + ") deleted a user (userID: " + id + ").";
+            this.logActivity(activity);
             sqlConn.Close();
             return "User Deleted Successfully";
         }
@@ -202,13 +263,32 @@ namespace WcfService
             sqlCmd.Parameters.Add("@userPassword", userPassword);
             if (cmd.Equals("checkUser"))
             {
-                message = (int)sqlCmd.ExecuteScalar() > 0 ? "Login Successful" : "Invalid email or password, Pls try again.";
+                if ((int)sqlCmd.ExecuteScalar() > 0)
+                {
+                    this.login(userEmail);
+                    this.userEmailLoggedIn = userEmail;
+                    string activity = "Admin (" + userEmail + ") logged in successfully";
+                    this.logActivity(activity);
+                    message = "Login Successful";
+                }
+                else
+                {
+                    message = "Invalid email or password, Pls try again.";
+                }
             }
             else if (cmd.Equals("createUser"))
             {
                 int result = sqlCmd.ExecuteNonQuery();
-                
-                message = result==1? "Registration completed":"Registration failed";
+                if (result == 1)
+                {
+                    string activity = "Admin (" + this.checkLoggedInUser() + ") registered a new user (email: " + userEmail + ", password: " + userPassword + ").";
+                    this.logActivity(activity);
+                    message = "Registration completed";
+                }
+                else
+                {
+                    message = "Registration failed";
+                }
             }
             sqlConn.Close();
             return message;
@@ -223,17 +303,19 @@ namespace WcfService
             SqlCommand chkM = new SqlCommand("checkMachine", this.sqlConn);
             chkM.CommandType = CommandType.StoredProcedure;
             chkM.Parameters.Add("@mName", name);
-            if ((int)chkM.ExecuteScalar() > 0) //email is unique
+            if ((int)chkM.ExecuteScalar() > 0) //machine name has been registered
             {
                 sqlConn.Close();
                 return "Please use a different machine name";
             }
-            else ////email has been registered
+            else ////machine name is unique
             {
                 SqlCommand addM = new SqlCommand("addMachine", this.sqlConn);
                 addM.CommandType = CommandType.StoredProcedure;
                 addM.Parameters.Add("@mName", name);
                 message = addM.ExecuteNonQuery() == 1 ? "Machine Created Successfully" : "Failed to create machine";
+                string activity = "Admin (" + this.checkLoggedInUser() + ") created a new machine (Machine Name: " + name + ").";
+                this.logActivity(activity);
                 sqlConn.Close();
                 return message;
             }
@@ -271,6 +353,8 @@ namespace WcfService
                 sqlCmd.Parameters.Add("@mId", id);
                 int result = sqlCmd.ExecuteNonQuery();
                 message = result == 1 ? "Successfully Updated" : "Update Failed";
+                string activity = "Admin (" + this.checkLoggedInUser() + ") updated a machine (New Machine Name: " + machineName + ").";
+                this.logActivity(activity);
             }
             sqlConn.Close();
             return message;
@@ -283,6 +367,8 @@ namespace WcfService
             chkUsr.CommandType = CommandType.StoredProcedure;
             chkUsr.Parameters.Add("@mId", id);
             chkUsr.ExecuteNonQuery();
+            string activity = "Admin (" + this.checkLoggedInUser() + ") deleted a machine (Machine ID: " + id + ").";
+            this.logActivity(activity);
             sqlConn.Close();
             return "Machine Deleted Successfully";
         }
@@ -304,7 +390,7 @@ namespace WcfService
 
         //public string UpdateMachinStatusWithDelay(int mId, string delay, string finalDelay)
         //{
-        //    int retrievedStatus = int.Parse(this.getMachineStatus(mId));
+        //    i nt retrievedStatus = int.Parse(this.getMachineStatus(mId));
         //    string message;
         //    this.sqlConn.ConnectionString = "Server=SAMUELHAN; Database=newDb; User Id=sa; Password=sasa;";
         //    sqlConn.Open();

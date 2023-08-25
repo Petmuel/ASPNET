@@ -27,7 +27,7 @@ namespace WebApplication1
             }
             else
             {
-                ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
+                ServiceReference2.Service1Client client = new ServiceReference2.Service1Client();
                 returnString = client.CheckUser(userEmail, userPassword);
                 //returnString = client.InsertUserDetails(this.emailTxtBox.Text, this.pwTxtBox.Text);
                 if (returnString.Equals("Login Successful"))

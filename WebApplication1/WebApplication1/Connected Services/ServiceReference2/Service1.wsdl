@@ -7,6 +7,18 @@
       <xsd:import schemaLocation="http://localhost:52597/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IService1_logout_InputMessage">
+    <wsdl:part name="parameters" element="tns:logout" />
+  </wsdl:message>
+  <wsdl:message name="IService1_logout_OutputMessage">
+    <wsdl:part name="parameters" element="tns:logoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_checkLoggedInUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:checkLoggedInUser" />
+  </wsdl:message>
+  <wsdl:message name="IService1_checkLoggedInUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:checkLoggedInUserResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_InsertUserDetails_InputMessage">
     <wsdl:part name="parameters" element="tns:InsertUserDetails" />
   </wsdl:message>
@@ -62,6 +74,14 @@
     <wsdl:part name="parameters" element="tns:getAllMachineResponse" />
   </wsdl:message>
   <wsdl:portType name="IService1">
+    <wsdl:operation name="logout">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/logout" message="tns:IService1_logout_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/logoutResponse" message="tns:IService1_logout_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="checkLoggedInUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/checkLoggedInUser" message="tns:IService1_checkLoggedInUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/checkLoggedInUserResponse" message="tns:IService1_checkLoggedInUser_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="InsertUserDetails">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/InsertUserDetails" message="tns:IService1_InsertUserDetails_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/InsertUserDetailsResponse" message="tns:IService1_InsertUserDetails_OutputMessage" />
@@ -101,6 +121,24 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="logout">
+      <soap:operation soapAction="http://tempuri.org/IService1/logout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkLoggedInUser">
+      <soap:operation soapAction="http://tempuri.org/IService1/checkLoggedInUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="InsertUserDetails">
       <soap:operation soapAction="http://tempuri.org/IService1/InsertUserDetails" style="document" />
       <wsdl:input>
