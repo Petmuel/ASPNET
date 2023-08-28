@@ -58,7 +58,7 @@ namespace formApp
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(12, 176);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1095, 556);
+            this.listView1.Size = new System.Drawing.Size(1217, 556);
             this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -84,7 +84,7 @@ namespace formApp
             // lblDateTime
             // 
             this.lblDateTime.AutoSize = true;
-            this.lblDateTime.Location = new System.Drawing.Point(593, 22);
+            this.lblDateTime.Location = new System.Drawing.Point(638, 28);
             this.lblDateTime.Name = "lblDateTime";
             this.lblDateTime.Size = new System.Drawing.Size(0, 20);
             this.lblDateTime.TabIndex = 6;
@@ -173,11 +173,11 @@ namespace formApp
             // 
             // btnSignOut
             // 
-            this.btnSignOut.Location = new System.Drawing.Point(515, 72);
+            this.btnSignOut.Location = new System.Drawing.Point(515, 19);
             this.btnSignOut.Name = "btnSignOut";
-            this.btnSignOut.Size = new System.Drawing.Size(94, 41);
+            this.btnSignOut.Size = new System.Drawing.Size(107, 38);
             this.btnSignOut.TabIndex = 16;
-            this.btnSignOut.Text = "Sign Out";
+            this.btnSignOut.Text = "Disconnect";
             this.btnSignOut.UseVisualStyleBackColor = true;
             this.btnSignOut.Click += new System.EventHandler(this.btnSignOut_Click);
             // 
@@ -185,7 +185,7 @@ namespace formApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1117, 744);
+            this.ClientSize = new System.Drawing.Size(1241, 744);
             this.Controls.Add(this.btnSignOut);
             this.Controls.Add(this.lblConnect);
             this.Controls.Add(this.lblLogin);
