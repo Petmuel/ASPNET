@@ -8,6 +8,9 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Data;
 using System.Timers;
+using System.Net.Sockets;
+using System.Net;
+using System.IO;
 
 namespace WcfService
 {
@@ -22,9 +25,16 @@ namespace WcfService
         private int randIndex;
         public string userEmailLoggedIn="";
         private DataTable machines = new DataTable();
+        private TcpListener tcpListener;
         public Service1()
         {
             this.sqlConn.ConnectionString = V;
+            if (tcpListener != null)
+            {
+                tcpListener.Stop();
+            }
+            tcpListener = new TcpListener(IPAddress.Parse("127.0.0.1"), 12345);
+            StartListener();
 
             this.machines = this.getAllMachine();
 
@@ -51,6 +61,48 @@ namespace WcfService
                 }
             }
         }
+        private async void StartListener()
+        {
+            while (true)
+            {
+                if (tcpListener == null)
+                {
+                    tcpListener = new TcpListener(IPAddress.Parse("127.0.0.1"), 12345); // Use the desired IP address and port
+                    
+                }
+                tcpListener.Start();
+                TcpClient client = await tcpListener.AcceptTcpClientAsync();
+                HandleClient(client);
+            }
+        }
+        private async void HandleClient(TcpClient client)
+        {
+            using (NetworkStream stream = client.GetStream())
+            using (StreamReader reader = new StreamReader(stream))
+            using (StreamWriter writer = new StreamWriter(stream))
+            {
+                // Read data from the client
+                string clientData = await reader.ReadLineAsync();
+
+                // Process data and send a response
+                string response = "Hello from the server!";
+                await writer.WriteLineAsync(response);
+                await writer.FlushAsync();
+            }
+            
+            client.Close();
+        }
+        public void stopTcp()
+        {
+            if (tcpListener != null)
+            {
+                tcpListener.Stop();
+                tcpListener = null;
+            }
+            tcpListener.Stop();
+            tcpListener = null;
+        }
+
         public void InitializeTimer()
         {
             this._timer = new Timer();
@@ -136,7 +188,7 @@ namespace WcfService
         {
             this.sqlConn.ConnectionString = V;
             sqlConn.Open();
-            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlDataAdapter adapter = new SqlDataAdapter(); 
             adapter.SelectCommand = new SqlCommand("getAllLogs", this.sqlConn);
             adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             DataTable dataTable = new DataTable();

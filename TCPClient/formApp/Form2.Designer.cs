@@ -45,6 +45,7 @@ namespace formApp
             this.lblLogin = new System.Windows.Forms.Label();
             this.lblConnect = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnSignOut = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView1
@@ -93,15 +94,15 @@ namespace formApp
             this.lblTimerCHange.AutoSize = true;
             this.lblTimerCHange.Location = new System.Drawing.Point(22, 22);
             this.lblTimerCHange.Name = "lblTimerCHange";
-            this.lblTimerCHange.Size = new System.Drawing.Size(47, 20);
+            this.lblTimerCHange.Size = new System.Drawing.Size(91, 20);
             this.lblTimerCHange.TabIndex = 7;
-            this.lblTimerCHange.Text = "Host:";
+            this.lblTimerCHange.Text = "IP Address:";
             // 
             // txtHost
             // 
-            this.txtHost.Location = new System.Drawing.Point(75, 22);
+            this.txtHost.Location = new System.Drawing.Point(115, 22);
             this.txtHost.Name = "txtHost";
-            this.txtHost.Size = new System.Drawing.Size(100, 26);
+            this.txtHost.Size = new System.Drawing.Size(141, 26);
             this.txtHost.TabIndex = 8;
             // 
             // btnLogin
@@ -118,15 +119,15 @@ namespace formApp
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(191, 22);
+            this.label1.Location = new System.Drawing.Point(262, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 20);
+            this.label1.Size = new System.Drawing.Size(42, 20);
             this.label1.TabIndex = 10;
-            this.label1.Text = "IP Address:";
+            this.label1.Text = "Port:";
             // 
             // txtIp
             // 
-            this.txtIp.Location = new System.Drawing.Point(288, 19);
+            this.txtIp.Location = new System.Drawing.Point(310, 22);
             this.txtIp.Name = "txtIp";
             this.txtIp.Size = new System.Drawing.Size(100, 26);
             this.txtIp.TabIndex = 11;
@@ -148,6 +149,7 @@ namespace formApp
             this.btnConnect.TabIndex = 13;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // lblLogin
             // 
@@ -169,11 +171,22 @@ namespace formApp
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btnSignOut
+            // 
+            this.btnSignOut.Location = new System.Drawing.Point(515, 72);
+            this.btnSignOut.Name = "btnSignOut";
+            this.btnSignOut.Size = new System.Drawing.Size(94, 41);
+            this.btnSignOut.TabIndex = 16;
+            this.btnSignOut.Text = "Sign Out";
+            this.btnSignOut.UseVisualStyleBackColor = true;
+            this.btnSignOut.Click += new System.EventHandler(this.btnSignOut_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1117, 744);
+            this.Controls.Add(this.btnSignOut);
             this.Controls.Add(this.lblConnect);
             this.Controls.Add(this.lblLogin);
             this.Controls.Add(this.btnConnect);
@@ -210,5 +223,6 @@ namespace formApp
         private System.Windows.Forms.Label lblLogin;
         private System.Windows.Forms.Label lblConnect;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnSignOut;
     }
 }

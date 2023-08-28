@@ -21,6 +21,12 @@ namespace formApp.ServiceReference4 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/logout", ReplyAction="http://tempuri.org/IService1/logoutResponse")]
         System.Threading.Tasks.Task logoutAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/stopTcp", ReplyAction="http://tempuri.org/IService1/stopTcpResponse")]
+        void stopTcp();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/stopTcp", ReplyAction="http://tempuri.org/IService1/stopTcpResponse")]
+        System.Threading.Tasks.Task stopTcpAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/checkLoggedInUser", ReplyAction="http://tempuri.org/IService1/checkLoggedInUserResponse")]
         string checkLoggedInUser();
         
@@ -121,6 +127,14 @@ namespace formApp.ServiceReference4 {
         
         public System.Threading.Tasks.Task logoutAsync() {
             return base.Channel.logoutAsync();
+        }
+        
+        public void stopTcp() {
+            base.Channel.stopTcp();
+        }
+        
+        public System.Threading.Tasks.Task stopTcpAsync() {
+            return base.Channel.stopTcpAsync();
         }
         
         public string checkLoggedInUser() {

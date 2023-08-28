@@ -18,9 +18,12 @@ namespace WcfService
         void logout();
 
         [OperationContract]
-        string checkLoggedInUser();
+        void stopTcp();
 
         [OperationContract]
+        string checkLoggedInUser();
+
+        [OperationContract] 
         DataTable getAllLogs();
 
         [OperationContract]

@@ -10,6 +10,16 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="stopTcp">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="stopTcpResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="checkLoggedInUser">
     <xs:complexType>
       <xs:sequence />

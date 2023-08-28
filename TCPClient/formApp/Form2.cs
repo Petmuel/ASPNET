@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,37 +16,35 @@ namespace formApp
     {
         private BackgroundWorker worker;
         private Timer t;
+        private TcpClient tcpClient;
         public Form2()
         {
-            InitializeComponent(); 
-            //this.loadingPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            //this.loadingPictureBox.Visible = false;
-            //worker = new BackgroundWorker();
-            //worker.DoWork += Worker_DoWork;
-            //worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            InitializeComponent();
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            //this.loadingPictureBox.Visible = false;
-            this.addMachineRow();
-            this.initializeTimer();
-            this.lblDateTime.Text = DateTime.Now.ToString();
-        }
-        private void initializeTimer()
-        {
-            t = new Timer();
-            t.Interval = 5000;
-            t.Tick += new EventHandler(t_Tick);
-            t.Start();
+            //this.startTCP();
             
-        }
-        private void t_Tick(object sender, EventArgs e)
-        {
-            this.addMachineRow();
+            this.addAllLogs();
+            //this.initializeTimer();
             this.lblDateTime.Text = DateTime.Now.ToString();
         }
-        private void addMachineRow()
+
+        //private void initializeTimer()
+        //{
+        //    t = new Timer();
+        //    t.Interval = 5000;
+        //    t.Tick += new EventHandler(t_Tick);
+        //    t.Start();
+
+        //}
+        //private void t_Tick(object sender, EventArgs e)
+        //{
+        //    this.addMachineRow();
+        //    this.lblDateTime.Text = DateTime.Now.ToString();
+        //}
+        private void addAllLogs()
         {
             DataTable tableLogData = new DataTable();
             listView1.Items.Clear();
@@ -62,19 +62,8 @@ namespace formApp
                 listView1.Items.Add(item);
             }
             listView1.View = View.Details;
-        }
+        } 
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Form1 Check = new Form1();
-            Check.Show();
-            Hide();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         //private void btnConfirm_Click(object sender, EventArgs e)
         //{
@@ -181,7 +170,7 @@ namespace formApp
         private void listView1_SelectedIndexChanged_2(object sender, EventArgs e)
         {
             int index = listView1.FocusedItem.Index;
-            
+
             ListViewItem selectedItem = listView1.Items[index];
             //this.lblMachineId.Text = selectedItem.Text;
         }
@@ -198,7 +187,7 @@ namespace formApp
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            this.addMachineRow();
+            this.addAllLogs();
         }
 
         private void btnTimerSet_Click(object sender, EventArgs e)
@@ -224,6 +213,48 @@ namespace formApp
         private void txtLogin_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSignOut_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (tcpClient != null)
+                {
+                    tcpClient.Close();
+                    lblDateTime.Text = "Disconnected!";
+                    txtLogin.ReadOnly = true;
+                    btnLogin.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblDateTime.Text = "Error disconnecting: " + ex.Message;
+            }
+        }
+
+        private async void btnConnect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string ipAddress = txtHost.Text;
+                int port = int.Parse(txtIp.Text);
+
+                tcpClient = new TcpClient();
+                tcpClient.Connect(ipAddress, port);
+                if (tcpClient.Connected)
+                {
+                    txtLogin.ReadOnly = false;
+                    btnLogin.Enabled = true;
+                    // Connection successful
+                    lblDateTime.Text = "Connected!";
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                lblDateTime.Text = "Connection failed: " + ex.Message;
+            }
         }
     }
 }
