@@ -98,10 +98,7 @@ namespace formApp
                     {
                         stream.Close();
                     }
-                    txtLogin.ReadOnly = true;
-                    btnLogin.Enabled = false;
-                    // Optionally, you can reset UI elements or perform other actions here
-                    lblDateTime.Text = "Disconnected from the server";
+                    await this.tcpCommandAsync("disconnect");
                 }
                 else
                 {
@@ -153,11 +150,12 @@ namespace formApp
                     message = splitCommand[0];
                 }
                 string response = "";
+                string response2 = "";
                 switch (message)
                 {
                     case "connectServer":
                         // Receive a response from the server
-                        response = await this.ReceiveDataAsync(stream);
+                        response = await this .ReceiveDataAsync(stream);
                         if (response.Equals("Hello from the server!"))
                         {
                             txtLogin.ReadOnly = false;
@@ -171,18 +169,19 @@ namespace formApp
                         break;
                     case "login":
                         // Receive a response from the server
-                        response = await this.ReceiveDataAsync(stream);
+                        //response2 = await this.ReceiveDataAsync(stream);
+                        response = await this.ReceiveDataTableAsync(stream);
                         if (response.Equals("Wrong email or password"))
                         {
                             lblDateTime.Text = "Server Response: " + response;
                         }
-                        else
+                        else 
                         {
                             try
                             {
                                 // Parse the received string array
                                 string[] dataArray = response.Split(';');
-                                lblLoginError.Text = dataArray[0];
+                                //lblLoginError.Text = dataArray[0];
                                 DataTable receivedDataTable = ConvertStringArrayToDataTable(dataArray); // Convert the XML data back to a DataTable
                                 txtHost.ReadOnly = true;
                                 txtIp.ReadOnly = true;
@@ -190,6 +189,8 @@ namespace formApp
                                 btnSignOut.Enabled = false;
                                 btnLogOut.Enabled = true;
                                 lblDateTime.Text = "";
+                                btnLogin.Enabled = false;
+                                txtLogin.ReadOnly = true;
                                 lblLoginError.Text = "Login Successful";
                                 this.addAllLogs(receivedDataTable);
                             }
@@ -200,8 +201,16 @@ namespace formApp
                             
                         }
                         break;
-                    case "getLogs":
-                        
+                    case "disconnect":
+                        // Receive a response from the server
+                        response = await this.ReceiveDataAsync(stream);
+                        if (response.Equals("Disconnected"))
+                        {
+                            txtLogin.ReadOnly = true;
+                            btnLogin.Enabled = false;
+                            // Optionally, you can reset UI elements or perform other actions here
+                            lblDateTime.Text = "Disconnected from the server";
+                        }
                         break;
                 }
 
@@ -275,7 +284,7 @@ namespace formApp
                 }
             }
             catch (Exception ex){
-                lblLoginError.Text = ex.Message;
+                lblLoginError.Text = "Wrong email or password";
             }
         }
 
@@ -306,6 +315,43 @@ namespace formApp
             string a = Encoding.UTF8.GetString(buffer, 0, bytesRead);
             return a;
         }
+
+        private async Task<string> ReceiveDataTableAsync(NetworkStream stream)
+        {
+            try
+            {
+                // Read the length of the data as a 4-byte integer
+                byte[] lengthBytes = new byte[4];
+                await stream.ReadAsync(lengthBytes, 0, 4);
+                int dataLength = BitConverter.ToInt32(lengthBytes, 0);
+
+                // Read the data in chunks and reconstruct the long string
+                byte[] buffer = new byte[dataLength];
+                int bytesRead = 0;
+                int totalBytesRead = 0;
+
+                while (totalBytesRead < dataLength)
+                {
+                    bytesRead = await stream.ReadAsync(buffer, totalBytesRead, dataLength - totalBytesRead);
+                    if (bytesRead <= 0)
+                    {
+                        // Handle the case where not all data is received
+                        break;
+                    }
+                    totalBytesRead += bytesRead;
+                }
+
+                // Convert the received data back to a string
+                string longString = Encoding.UTF8.GetString(buffer);
+                return longString;
+            }
+            catch(Exception ex)
+            {
+                return ex.Message;
+            }
+            
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             txtLogin.Text = "";

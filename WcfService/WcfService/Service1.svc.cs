@@ -112,16 +112,18 @@ namespace WcfService
                                     // Convert the DataTable to XML
                                     string[] responseArray = this.ConvertDataTableToStringArray(dt);
                                     response = string.Join(";", responseArray);
-                                    this.SendData(stream, response);
+                                    this.SendDataTable(stream, response);
                                 }
                                 else
                                 {
                                     response = "Wrong email or password";
-                                    this.SendData(stream, response);
+                                    this.SendDataTable(stream, response);
                                 }
                                 break;
                             case "disconnect":
-                                response = "Server disconnected.";
+                                response = "Disconnected";
+                                this.TCPClientDisconnect();
+                                this.SendData(stream, response);
                                 break;
                             case "getLogs":
                                 
@@ -164,13 +166,44 @@ namespace WcfService
             byte[] responseData = Encoding.UTF8.GetBytes(response);
             stream.Write(responseData, 0, responseData.Length);
         }
-       
+
+        private void SendDataTable(NetworkStream stream, String response)
+        {
+            byte[] buffer = Encoding.UTF8.GetBytes(response);
+
+            // Send the length of the data as a 4-byte integer
+            byte[] lengthBytes = BitConverter.GetBytes(buffer.Length);
+            stream.Write(lengthBytes, 0, lengthBytes.Length);
+
+            // Send the data in chunks (e.g., 1024 bytes at a time)
+            int offset = 0;
+            int chunkSize = 1024;
+            while (offset < buffer.Length)
+            {
+                int remainingBytes = buffer.Length - offset;
+                int bytesToSend = Math.Min(chunkSize, remainingBytes);
+                stream.Write(buffer, offset, bytesToSend);
+                offset += bytesToSend;
+            }
+        }
+
         public void stopTcp()
         {
             isRunning = false;
             listener.Stop();
+            this.StartListener();
         }
-
+        public void TCPClientDisconnect()
+        {
+            if (isRunning)
+            {
+                isRunning = false; // Stop the server loop
+                if (listener != null)
+                {
+                    listener.Stop(); // Stop listening for new connections
+                }
+            }
+        }
         public void InitializeTimer()
         {
             this._timer.Elapsed += TimerElapsed;
