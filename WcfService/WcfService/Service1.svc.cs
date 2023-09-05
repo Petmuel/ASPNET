@@ -11,6 +11,9 @@ using System.Timers;
 using System.Net.Sockets;
 using System.Net;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
+using System.Xml;
 
 namespace WcfService
 {
@@ -20,22 +23,23 @@ namespace WcfService
     public class Service1 : IService1
     {
         private const string V = "Server=SAMUELHAN; Database=newDb; User Id=sa; Password=sasa;";
-        public Timer _timer;
+        public Timer _timer = new Timer (10000);
         SqlConnection sqlConn = new SqlConnection();
         private int randIndex;
         public string userEmailLoggedIn="";
         private DataTable machines = new DataTable();
-        private TcpListener tcpListener;
+        //private static TcpListener tcpListener = new TcpListener(IPAddress.Parse("127.0.0.1"), 12345);
+        private TcpListener listener;
+        //private bool isListenerRunning = false;
+        // Static constructor 
+        private bool isRunning = false;
         public Service1()
         {
             this.sqlConn.ConnectionString = V;
-            if (tcpListener != null)
+            if (isRunning==false)
             {
-                tcpListener.Stop();
+                this.StartListener();
             }
-            tcpListener = new TcpListener(IPAddress.Parse("127.0.0.1"), 12345);
-            StartListener();
-
             this.machines = this.getAllMachine();
 
             if (this.machines.Rows.Count > 0)
@@ -61,52 +65,114 @@ namespace WcfService
                 }
             }
         }
-        private async void StartListener()
-        {
-            while (true)
-            {
-                if (tcpListener == null)
-                {
-                    tcpListener = new TcpListener(IPAddress.Parse("127.0.0.1"), 12345); // Use the desired IP address and port
-                    
-                }
-                tcpListener.Start();
-                TcpClient client = await tcpListener.AcceptTcpClientAsync();
-                HandleClient(client);
-            }
-        }
-        private async void HandleClient(TcpClient client)
-        {
-            using (NetworkStream stream = client.GetStream())
-            using (StreamReader reader = new StreamReader(stream))
-            using (StreamWriter writer = new StreamWriter(stream))
-            {
-                // Read data from the client
-                string clientData = await reader.ReadLineAsync();
 
-                // Process data and send a response
-                string response = "Hello from the server!";
-                await writer.WriteLineAsync(response);
-                await writer.FlushAsync();
+        private void StartListener()
+        {
+            string response = "";
+            try
+            {
+                listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 12345);
+                listener.Start();
+                isRunning = true;
+
+                while (isRunning)
+                {
+                    //Waiting for a connection...
+                    TcpClient client = listener.AcceptTcpClient();
+                    //client connected
+
+                    NetworkStream stream = client.GetStream();
+                    byte[] buffer = new byte[1024];
+                    int bytesRead;
+                    
+                    while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
+                    {
+                        string data = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                        string[] splitString = { "", "", "" };
+                        string command = data;
+                        Console.WriteLine($"Received: {data}");
+                        if (data.Contains('-'))
+                        {
+                            splitString = data.Split('-');
+                            command = splitString[0];
+                        }
+                        switch (command)
+                        {
+                            case "connectServer":
+                                response = "Hello from the server!";
+                                this.SendData(stream, response);
+                                //SendDataTable(stream, this.getAllLogs());
+                                break;
+                            case "login":
+                                string email = splitString[1];
+                                string password = splitString[2]; 
+                                if(this.CheckUser(email, password).Equals("Login Successful"))
+                                {
+                                    DataTable dt = this.getAllLogs();
+                                    // Convert the DataTable to XML
+                                    string[] responseArray = this.ConvertDataTableToStringArray(dt);
+                                    response = string.Join(";", responseArray);
+                                    this.SendData(stream, response);
+                                }
+                                else
+                                {
+                                    response = "Wrong email or password";
+                                    this.SendData(stream, response);
+                                }
+                                break;
+                            case "disconnect":
+                                response = "Server disconnected.";
+                                break;
+                            case "getLogs":
+                                
+                                break;
+                        }
+                        
+                    }
+                    client.Close();
+                }
             }
-            
-            client.Close();
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error service: " + ex.Message);
+            }
+            finally
+            {
+                isRunning = false; // Server is no longer running
+                if (listener != null)
+                {
+                    listener.Stop();
+                }
+            }
         }
+        
+        // Convert a DataTable to a string array
+        private string[] ConvertDataTableToStringArray(DataTable dataTable)
+        {
+            // Convert the DataTable to a string array
+            List<string> dataList = new List<string>();
+            foreach (DataRow row in dataTable.Rows)
+            {
+                string[] values = row.ItemArray.Select(x => x.ToString()).ToArray();
+                string rowString = string.Join(",", values);
+                dataList.Add(rowString);
+            }
+            return dataList.ToArray();
+        }
+        private void SendData(NetworkStream stream, String response)
+        {
+            byte[] responseData = Encoding.UTF8.GetBytes(response);
+            stream.Write(responseData, 0, responseData.Length);
+        }
+       
         public void stopTcp()
         {
-            if (tcpListener != null)
-            {
-                tcpListener.Stop();
-                tcpListener = null;
-            }
-            tcpListener.Stop();
-            tcpListener = null;
+            isRunning = false;
+            listener.Stop();
         }
 
         public void InitializeTimer()
         {
-            this._timer = new Timer();
-            this._timer.Interval = 15000; // 5000 milliseconds = 5 seconds
             this._timer.Elapsed += TimerElapsed;
             this._timer.AutoReset = false;
             this._timer.Start();
@@ -124,47 +190,8 @@ namespace WcfService
                 // Set flag to prevent concurrent updates
                 this.UpdateMachineStatusRand(status, id);
             
-            //if(this.index< this.machines.Rows.Count - 1)
-            //{
-            //    this.index++;
-            //    this.retrieveRow();
-            //}
-            //else
-            //{
-            //    this.index = -1;
-            //}
         }
-        //public void GetUpdate()
-        //{
-        //    // Return the latest update
-        //    return GetLatestUpdate();
-        //} // These methods can be replaced with your actual data handling logic
-
-        //private void UpdateDataTable(DataTable t)
-        //{
-        //    this._latestMachines = t;
-        //}
-        //private void nextRow()
-        //{
-        //    this.index++;
-        //}
-
-        //private void retrieveRow()
-        //{
-        //    if (this.index >= this.machines.Rows.Count)
-        //    {
-        //        this.index = 0;
-        //    }
-        //    DataRow row = this.machines.Rows[this.index];
-        //    int id = Convert.ToInt32(row["MachineID"]);
-        //    int status = Convert.ToInt32(row["MachineStatus"]);
-        //    UpdateMachineStatusRand(status, id);
-        //}
-        //private void OnUpdateCompleted()
-        //{
-        //    this.isUpdating = false; // Allow next update
-        //    this.index++; // Move to next row
-        //}
+      
         public void login(string email)
         {
             SqlCommand login = new SqlCommand("changeUserLoginEmail", this.sqlConn);
@@ -175,7 +202,7 @@ namespace WcfService
         public void logout()
         {
             this.sqlConn.Open();
-            string activity = "Admin (" + this.checkLoggedInUser() + ") signed out successfully.";
+            string activity = "Admin (" + this.checkLoggedInUser() + ") signed out successfully";
             this.logActivity(activity);
             SqlCommand login = new SqlCommand("changeUserLoginEmail", this.sqlConn);
             login.CommandType = CommandType.StoredProcedure;
@@ -283,7 +310,7 @@ namespace WcfService
                 sqlCmd.Parameters.Add("@userId", id);
                 int result = sqlCmd.ExecuteNonQuery();
                 message = result == 1 ? "Successfully Updated" : "Update Failed";
-                string activity = "Admin (" + this.checkLoggedInUser() + ") updated a user detail (new email: " + email + ", new password: " + password + ").";
+                string activity = "Admin (" + this.checkLoggedInUser() + ") updated a user detail (new email: " + email + " | new password: " + password + ")";
                 this.logActivity(activity);
             }
             sqlConn.Close();
@@ -297,7 +324,7 @@ namespace WcfService
             chkUsr.CommandType = CommandType.StoredProcedure;
             chkUsr.Parameters.Add("@userID", id);
             chkUsr.ExecuteNonQuery();
-            string activity = "Admin (" + this.checkLoggedInUser() + ") deleted a user (userID: " + id + ").";
+            string activity = "Admin (" + this.checkLoggedInUser() + ") deleted a user (userID: " + id + ")";
             this.logActivity(activity);
             sqlConn.Close();
             return "User Deleted Successfully";
@@ -319,8 +346,11 @@ namespace WcfService
                 {
                     this.login(userEmail);
                     this.userEmailLoggedIn = userEmail;
-                    string activity = "Admin (" + userEmail + ") logged in successfully";
-                    this.logActivity(activity);
+                    if (!userEmail.Equals("ttt@gmail.com")) // admin in TCPCLient
+                    {
+                        string activity = "Admin (" + userEmail + ") logged in successfully";
+                        this.logActivity(activity);
+                    }
                     message = "Login Successful";
                 }
                 else
@@ -333,7 +363,7 @@ namespace WcfService
                 int result = sqlCmd.ExecuteNonQuery();
                 if (result == 1)
                 {
-                    string activity = "Admin (" + this.checkLoggedInUser() + ") registered a new user (email: " + userEmail + ", password: " + userPassword + ").";
+                    string activity = "Admin (" + this.checkLoggedInUser() + ") registered a new user (email: " + userEmail + " | password: " + userPassword + ")";
                     this.logActivity(activity);
                     message = "Registration completed";
                 }
@@ -366,7 +396,7 @@ namespace WcfService
                 addM.CommandType = CommandType.StoredProcedure;
                 addM.Parameters.Add("@mName", name);
                 message = addM.ExecuteNonQuery() == 1 ? "Machine Created Successfully" : "Failed to create machine";
-                string activity = "Admin (" + this.checkLoggedInUser() + ") created a new machine (Machine Name: " + name + ").";
+                string activity = "Admin (" + this.checkLoggedInUser() + ") created a new machine (Machine Name: " + name + ")";
                 this.logActivity(activity);
                 sqlConn.Close();
                 return message;
@@ -405,7 +435,7 @@ namespace WcfService
                 sqlCmd.Parameters.Add("@mId", id);
                 int result = sqlCmd.ExecuteNonQuery();
                 message = result == 1 ? "Successfully Updated" : "Update Failed";
-                string activity = "Admin (" + this.checkLoggedInUser() + ") updated a machine (New Machine Name: " + machineName + ").";
+                string activity = "Admin (" + this.checkLoggedInUser() + ") updated a machine (New Machine Name: " + machineName + ")";
                 this.logActivity(activity);
             }
             sqlConn.Close();
@@ -419,7 +449,7 @@ namespace WcfService
             chkUsr.CommandType = CommandType.StoredProcedure;
             chkUsr.Parameters.Add("@mId", id);
             chkUsr.ExecuteNonQuery();
-            string activity = "Admin (" + this.checkLoggedInUser() + ") deleted a machine (Machine ID: " + id + ").";
+            string activity = "Admin (" + this.checkLoggedInUser() + ") deleted a machine (Machine ID: " + id + ")";
             this.logActivity(activity);
             sqlConn.Close();
             return "Machine Deleted Successfully";

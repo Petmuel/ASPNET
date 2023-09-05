@@ -37,7 +37,6 @@ namespace formApp
             this.lblDateTime = new System.Windows.Forms.Label();
             this.lblTimerCHange = new System.Windows.Forms.Label();
             this.txtHost = new System.Windows.Forms.TextBox();
-            this.btnLogin = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtIp = new System.Windows.Forms.TextBox();
             this.txtLogin = new System.Windows.Forms.TextBox();
@@ -46,6 +45,9 @@ namespace formApp
             this.lblConnect = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnSignOut = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
+            this.lblLoginError = new System.Windows.Forms.Label();
+            this.btnLogOut = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView1
@@ -58,7 +60,7 @@ namespace formApp
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(12, 176);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1217, 556);
+            this.listView1.Size = new System.Drawing.Size(1148, 556);
             this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -67,24 +69,22 @@ namespace formApp
             // dateTimeCol
             // 
             this.dateTimeCol.Text = "Date_Time";
-            this.dateTimeCol.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.dateTimeCol.Width = 85;
+            this.dateTimeCol.Width = 110;
             // 
             // userEmail
             // 
             this.userEmail.Text = "LoggedInUserEmail";
-            this.userEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.userEmail.Width = 190;
+            this.userEmail.Width = 150;
             // 
             // Activity
             // 
             this.Activity.Text = "Activity";
-            this.Activity.Width = 500;
+            this.Activity.Width = 1000;
             // 
             // lblDateTime
             // 
             this.lblDateTime.AutoSize = true;
-            this.lblDateTime.Location = new System.Drawing.Point(638, 28);
+            this.lblDateTime.Location = new System.Drawing.Point(22, 63);
             this.lblDateTime.Name = "lblDateTime";
             this.lblDateTime.Size = new System.Drawing.Size(0, 20);
             this.lblDateTime.TabIndex = 6;
@@ -105,17 +105,6 @@ namespace formApp
             this.txtHost.Size = new System.Drawing.Size(141, 26);
             this.txtHost.TabIndex = 8;
             // 
-            // btnLogin
-            // 
-            this.btnLogin.Enabled = false;
-            this.btnLogin.Location = new System.Drawing.Point(416, 72);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(93, 41);
-            this.btnLogin.TabIndex = 9;
-            this.btnLogin.Text = "Login";
-            this.btnLogin.UseVisualStyleBackColor = true;
-            this.btnLogin.Click += new System.EventHandler(this.btnTimerSet_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -134,7 +123,7 @@ namespace formApp
             // 
             // txtLogin
             // 
-            this.txtLogin.Location = new System.Drawing.Point(26, 77);
+            this.txtLogin.Location = new System.Drawing.Point(26, 101);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.ReadOnly = true;
             this.txtLogin.Size = new System.Drawing.Size(362, 26);
@@ -154,7 +143,7 @@ namespace formApp
             // lblLogin
             // 
             this.lblLogin.AutoSize = true;
-            this.lblLogin.Location = new System.Drawing.Point(532, 82);
+            this.lblLogin.Location = new System.Drawing.Point(532, 113);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(0, 20);
             this.lblLogin.TabIndex = 14;
@@ -162,7 +151,7 @@ namespace formApp
             // lblConnect
             // 
             this.lblConnect.AutoSize = true;
-            this.lblConnect.Location = new System.Drawing.Point(536, 82);
+            this.lblConnect.Location = new System.Drawing.Point(536, 113);
             this.lblConnect.Name = "lblConnect";
             this.lblConnect.Size = new System.Drawing.Size(0, 20);
             this.lblConnect.TabIndex = 15;
@@ -181,11 +170,44 @@ namespace formApp
             this.btnSignOut.UseVisualStyleBackColor = true;
             this.btnSignOut.Click += new System.EventHandler(this.btnSignOut_Click);
             // 
+            // btnLogin
+            // 
+            this.btnLogin.Enabled = false;
+            this.btnLogin.Location = new System.Drawing.Point(416, 94);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(93, 41);
+            this.btnLogin.TabIndex = 17;
+            this.btnLogin.Text = "Login";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
+            // lblLoginError
+            // 
+            this.lblLoginError.AutoSize = true;
+            this.lblLoginError.Location = new System.Drawing.Point(622, 108);
+            this.lblLoginError.Name = "lblLoginError";
+            this.lblLoginError.Size = new System.Drawing.Size(0, 20);
+            this.lblLoginError.TabIndex = 18;
+            // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Enabled = false;
+            this.btnLogOut.Location = new System.Drawing.Point(515, 94);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(101, 40);
+            this.btnLogOut.TabIndex = 19;
+            this.btnLogOut.Text = "Log Out";
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1241, 744);
+            this.ClientSize = new System.Drawing.Size(1337, 744);
+            this.Controls.Add(this.btnLogOut);
+            this.Controls.Add(this.lblLoginError);
+            this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnSignOut);
             this.Controls.Add(this.lblConnect);
             this.Controls.Add(this.lblLogin);
@@ -193,7 +215,6 @@ namespace formApp
             this.Controls.Add(this.txtLogin);
             this.Controls.Add(this.txtIp);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtHost);
             this.Controls.Add(this.lblTimerCHange);
             this.Controls.Add(this.lblDateTime);
@@ -213,7 +234,6 @@ namespace formApp
         private System.Windows.Forms.Label lblDateTime;
         private System.Windows.Forms.Label lblTimerCHange;
         private System.Windows.Forms.TextBox txtHost;
-        private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.ColumnHeader dateTimeCol;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtIp;
@@ -224,5 +244,8 @@ namespace formApp
         private System.Windows.Forms.Label lblConnect;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnSignOut;
+        private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Label lblLoginError;
+        private System.Windows.Forms.Button btnLogOut;
     }
 }
