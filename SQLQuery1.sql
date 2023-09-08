@@ -8,7 +8,7 @@ CREATE PROCEDURE checkUser
 	(@userEmail Varchar(30), @userPassword Varchar(30))
 AS 
 BEGIN
-	SELECT COUNT(*) FROM TblUser 
+	SELECT COUNT(*) FROM TblUser
 	WHERE Email= @userEmail AND Password= @userPassword
 END
 
@@ -145,3 +145,34 @@ BEGIN
 END
 
 EXEC checkUpdatedMachineStatus '3', '2','00:00:02'
+
+CREATE TABLE [dbo].[TblAuditLogs] (
+    [EventTime] DATETIME,
+    [SequenceNumber] INT,
+    [ActionID] INT,
+    [ServerName] NVARCHAR(128),
+    [DatabaseName] NVARCHAR(128),
+    [ObjectName] NVARCHAR(128),
+    [SchemaName] NVARCHAR(128),
+    [AuditName] NVARCHAR(128),
+    [Statement] NVARCHAR(MAX),
+    [AdditionalInfo] XML
+);
+
+select * from [newDB].[dbo].[TblAuditLogs]
+
+DROP Table TblAuditLogs
+
+USE [newDB]
+GO
+CREATE PROCEDURE [dbo].[getAuditLogs]
+AS 
+BEGIN
+	SELECT event_time, 
+	action_id, 
+	server_principal_name, 
+	client_ip, 
+	additional_information 
+	FROM sys.fn_get_audit_file('C:\Audit\*', NULL, NULL);
+END
+

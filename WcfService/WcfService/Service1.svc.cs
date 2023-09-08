@@ -120,10 +120,18 @@ namespace WcfService
                                     this.SendDataTable(stream, response);
                                 }
                                 break;
+                            case "getAuditLogin":
+                                    DataTable dtAudit = this.getAllAuditLogs();
+                                    // Convert the DataTable to XML
+                                    string[] auditResponseArray = this.ConvertDataTableToStringArray(dtAudit);
+                                    response = string.Join(";", auditResponseArray);
+                                    this.SendDataTable(stream, response);
+                                break;
                             case "disconnect":
                                 response = "Disconnected";
                                 this.TCPClientDisconnect();
                                 this.SendData(stream, response);
+                                this.stopTcp();
                                 break;
                             case "getLogs":
                                 
@@ -149,7 +157,7 @@ namespace WcfService
         }
         
         // Convert a DataTable to a string array
-        private string[] ConvertDataTableToStringArray(DataTable dataTable)
+        private string[] ConvertDataTableToStringArray(DataTable dataTable)      
         {
             // Convert the DataTable to a string array
             List<string> dataList = new List<string>();
@@ -257,6 +265,20 @@ namespace WcfService
             DataTable dt = ds.Tables["logTable"];
             sqlConn.Close();
             return dt;
+        }
+        public DataTable getAllAuditLogs()
+        {
+            this.sqlConn.ConnectionString = V;
+            sqlConn.Open();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            adapter.SelectCommand = new SqlCommand("getAuditLogs", this.sqlConn);
+            adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            DataTable dataTable = new DataTable();
+            DataSet ds = new DataSet();
+            adapter.Fill(ds, "AuditlogTable");
+            dataTable = ds.Tables["AuditlogTable"];
+            sqlConn.Close();
+            return dataTable;
         }
         public string checkLoggedInUser()
         {
@@ -490,6 +512,7 @@ namespace WcfService
 
         public DataTable getAllMachine()
         {
+
             //System.Threading.Thread.Sleep(3000);
             this.sqlConn.Open();
             SqlDataAdapter adapter = new SqlDataAdapter();

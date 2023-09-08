@@ -34,30 +34,60 @@ namespace formApp
             this.lblDateTime.Text = DateTime.Now.ToString();
         }
 
-        private void addAllLogs(DataTable TBlogs)
+        private void addAllLogs(DataTable TBlogs, String order)
         {
-            listView1.Items.Clear();
-            try
+            if (order.Equals("activityLogs"))
             {
-                foreach (DataRow row in TBlogs.Rows)
+                listView1.Items.Clear();
+                try
                 {
-                    //Add Item to ListView.
-                    string mId = row["LogDateTime"].ToString();
-                    string mName = row["LogUserEmail"].ToString();
-                    string mStatus = row["LogActivity"].ToString();
-                    string[] rowItem = { mId, mName, mStatus };
-                    ListViewItem item = new ListViewItem(rowItem);
-                    //item.BackColor = mStatus.Equals("1") ? Color.GreenYellow : Color.PaleVioletRed;   //change row backcolor based on status
-                    listView1.Items.Add(item);
+                    foreach (DataRow row in TBlogs.Rows)
+                    {
+                        //Add Item to ListView.
+                        string mId = row["LogDateTime"].ToString();
+                        string mName = row["LogUserEmail"].ToString();
+                        string mStatus = row["LogActivity"].ToString();
+                        string[] rowItem = { mId, mName, mStatus };
+                        ListViewItem item = new ListViewItem(rowItem);
+                        //item.BackColor = mStatus.Equals("1") ? Color.GreenYellow : Color.PaleVioletRed;   //change row backcolor based on status
+                        listView1.Items.Add(item);
+                    }
+                    listView1.View = View.Details;
                 }
-                listView1.View = View.Details;
+                catch (Exception ex)
+                {
+                    lblDateTime.Text = "dataTable failed: " + ex.Message;
+                    return;
+                }
             }
-            catch (Exception ex)
+            else if (order.Equals("auditLogs"))
             {
-                lblDateTime.Text = "dataTable failed: " + ex.Message;
-                return;
+                listView2.Items.Clear();
+                try
+                {
+                    foreach (DataRow row in TBlogs.Rows)
+                    {
+                        //Add Item to ListView.
+                        string Etime = row["EventTime"].ToString();
+                        string Etype = row["EventType"].ToString();
+                        string SPN = row["ServerPrincipalName"].ToString();
+                        string IP = row["IPAddress"].ToString();
+                        string addInfo = row["AdditionalInfo"].ToString();
+                        string[] rowItem = { Etime, Etype, SPN, IP, addInfo };
+                        ListViewItem item = new ListViewItem(rowItem);
+                        //item.BackColor = mStatus.Equals("1") ? Color.GreenYellow : Color.PaleVioletRed;   //change row backcolor based on status
+                        listView2.Items.Add(item);
+                    }
+                    listView2.View = View.Details;
+                }
+                catch (Exception ex)
+                {
+                    lblDateTime.Text = "dataTable failed: " + ex.Message;
+                    return;
+                }
             }
-        } 
+
+        }
         private void listView1_SelectedIndexChanged_2(object sender, EventArgs e)
         {
             int index = listView1.FocusedItem.Index;
@@ -155,7 +185,7 @@ namespace formApp
                 {
                     case "connectServer":
                         // Receive a response from the server
-                        response = await this .ReceiveDataAsync(stream);
+                        response = await this.ReceiveDataAsync(stream);
                         if (response.Equals("Hello from the server!"))
                         {
                             txtLogin.ReadOnly = false;
@@ -175,14 +205,14 @@ namespace formApp
                         {
                             lblDateTime.Text = "Server Response: " + response;
                         }
-                        else 
+                        else
                         {
                             try
                             {
                                 // Parse the received string array
                                 string[] dataArray = response.Split(';');
                                 //lblLoginError.Text = dataArray[0];
-                                DataTable receivedDataTable = ConvertStringArrayToDataTable(dataArray); // Convert the XML data back to a DataTable
+                                DataTable receivedDataTable = this.ConvertStringArrayToDataTable(dataArray, "activityLogs"); // Convert the XML data back to a DataTable
                                 txtHost.ReadOnly = true;
                                 txtIp.ReadOnly = true;
                                 btnConnect.Enabled = false;
@@ -191,15 +221,36 @@ namespace formApp
                                 lblDateTime.Text = "";
                                 btnLogin.Enabled = false;
                                 txtLogin.ReadOnly = true;
+                                btnQuery.Enabled = true;
                                 lblLoginError.Text = "Login Successful";
-                                this.addAllLogs(receivedDataTable);
+                                this.addAllLogs(receivedDataTable, "activityLogs");
                             }
                             catch (Exception ex)
                             {
                                 lblDateTime.Text = ex.Message;
                             }
-                            
+
                         }
+                        break;
+                    case "getAuditLogin":
+                        // Receive a response from the server
+                        response = await this.ReceiveDataTableAsync(stream);
+
+                        try
+                        {
+                            // Parse the received string array
+                            string[] auditDataArray = response.Split(';');
+                            //lblLoginError.Text = dataArray[0];
+                            DataTable receivedDataTable = this.ConvertStringArrayToDataTable(auditDataArray, "auditLogins"); // Convert the XML data back to a DataTable
+                                                                                                                             //lblLoginError.Text = "Login Successful";
+                            this.addAllLogs(receivedDataTable, "auditLogs");
+                        }
+                        catch (Exception ex)
+                        {
+                            lblDateTime.Text = ex.Message;
+                        }
+
+
                         break;
                     case "disconnect":
                         // Receive a response from the server
@@ -208,6 +259,9 @@ namespace formApp
                         {
                             txtLogin.ReadOnly = true;
                             btnLogin.Enabled = false;
+                            btnQuery.Enabled = true;
+                            txtHost.Text = "";
+                            txtIp.Text = "";
                             // Optionally, you can reset UI elements or perform other actions here
                             lblDateTime.Text = "Disconnected from the server";
                         }
@@ -227,20 +281,41 @@ namespace formApp
 
         //netstat -aon
         // Convert a string array back to a DataTable
-        private DataTable ConvertStringArrayToDataTable(string[] dataArray)
+        private DataTable ConvertStringArrayToDataTable(string[] dataArray, string dtType)
         {
-            // Create a DataTable with appropriate columns
             DataTable dataTable = new DataTable();
-            dataTable.Columns.Add("LogDateTime");
-            dataTable.Columns.Add("LogUserEmail");
-            dataTable.Columns.Add("LogActivity");
-            // Add columns to dataTable as needed
-            foreach (string dataRow in dataArray)
+            if (dtType.Equals("activityLogs"))
             {
-                string[] values = dataRow.Split(',');
-                if (values.Length == 3) // Ensure the array has all three values
+                // Create a DataTable with appropriate columns
+                dataTable.Columns.Add("LogDateTime");
+                dataTable.Columns.Add("LogUserEmail");
+                dataTable.Columns.Add("LogActivity");
+                // Add columns to dataTable as needed
+                foreach (string dataRow in dataArray)
                 {
-                    dataTable.Rows.Add(values);
+                    string[] values = dataRow.Split(',');
+                    if (values.Length == 3) // Ensure the array has all three values
+                    {
+                        dataTable.Rows.Add(values);
+                    }
+                }
+
+            }
+            else if (dtType.Equals("auditLogins"))
+            {
+                dataTable.Columns.Add("EventTime");
+                dataTable.Columns.Add("EventType");
+                dataTable.Columns.Add("ServerPrincipalName");
+                dataTable.Columns.Add("IPAddress");
+                dataTable.Columns.Add("AdditionalInfo");
+                // Add columns to dataTable as needed
+                foreach (string dataRow in dataArray)
+                {
+                    string[] values = dataRow.Split(',');
+                    if (values.Length == 5) // Ensure the array has all three values
+                    {
+                        dataTable.Rows.Add(values);
+                    }
                 }
             }
             return dataTable;
@@ -283,7 +358,8 @@ namespace formApp
                     lblLoginError.Text = "Please enter valid email address";
                 }
             }
-            catch (Exception ex){
+            catch (Exception ex)
+            {
                 lblLoginError.Text = "Wrong email or password";
             }
         }
@@ -345,17 +421,18 @@ namespace formApp
                 string longString = Encoding.UTF8.GetString(buffer);
                 return longString;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return ex.Message;
             }
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             txtLogin.Text = "";
             listView1.Items.Clear();
+            listView2.Items.Clear();
             lblLoginError.Text = "Log Out Successfully";
             lblDateTime.Text = "";
             txtIp.ReadOnly = false;
@@ -363,6 +440,16 @@ namespace formApp
             btnLogOut.Enabled = false;
             btnConnect.Enabled = true;
             btnSignOut.Enabled = true;
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void button1_Click_1(object sender, EventArgs e)
+        {
+            await this.tcpCommandAsync("getAuditLogin");
         }
     }
 }
