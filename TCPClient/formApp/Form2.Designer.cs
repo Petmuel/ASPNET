@@ -268,7 +268,7 @@ namespace formApp
             // auditServerPrincipleName
             // 
             this.auditServerPrincipleName.Text = "Server_Principle_Name";
-            this.auditServerPrincipleName.Width = 220;
+            this.auditServerPrincipleName.Width = 180;
             // 
             // auditClientIp
             // 
@@ -278,7 +278,7 @@ namespace formApp
             // auditAddInfo
             // 
             this.auditAddInfo.Text = "Additional_Information";
-            this.auditAddInfo.Width = 200;
+            this.auditAddInfo.Width = 270;
             // 
             // lblAuditLogError
             // 

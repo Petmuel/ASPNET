@@ -241,8 +241,7 @@ namespace formApp
                             // Parse the received string array
                             string[] auditDataArray = response.Split(';');
                             //lblLoginError.Text = dataArray[0];
-                            DataTable receivedDataTable = this.ConvertStringArrayToDataTable(auditDataArray, "auditLogins"); // Convert the XML data back to a DataTable
-                                                                                                                             //lblLoginError.Text = "Login Successful";
+                            DataTable receivedDataTable = this.ConvertStringArrayToDataTable(auditDataArray, "auditLogins");
                             this.addAllLogs(receivedDataTable, "auditLogs");
                         }
                         catch (Exception ex)
@@ -430,6 +429,8 @@ namespace formApp
 
         private void button1_Click(object sender, EventArgs e)
         {
+            txtLogin.ReadOnly = false;
+            btnLogin.Enabled = true;
             txtLogin.Text = "";
             listView1.Items.Clear();
             listView2.Items.Clear();
