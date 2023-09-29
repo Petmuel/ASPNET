@@ -1,0 +1,70 @@
+[21/9/2023 11:12:57 AM] [Error] Connection Failed (Server is inactive, or the server's IP address or port is invalid)
+
+[21/9/2023 11:12:57 AM] [Client Send] Connect To Server
+
+[21/9/2023 11:13:14 AM] [Client Send] Connect To Server
+
+[21/9/2023 11:13:14 AM] [Error] Connection Failed (Server is inactive, or the server's IP address or port is invalid)
+
+[21/9/2023 11:13:16 AM] [Client Send] Connect To Server
+
+[21/9/2023 11:13:16 AM] [Error] Connection Failed (Server is inactive, or the server's IP address or port is invalid)
+
+[21/9/2023 11:13:18 AM] [Client Send] Connect To Server
+
+[21/9/2023 11:13:18 AM] [Error] Connection Failed (Server is inactive, or the server's IP address or port is invalid)
+
+[21/9/2023 11:13:20 AM] [Client Send] Connect To Server
+
+[21/9/2023 11:13:20 AM] [Error] Connection Failed (Server is inactive, or the server's IP address or port is invalid)
+
+[21/9/2023 11:13:22 AM] [Client Send] Connect To Server
+
+[21/9/2023 11:13:22 AM] [Error] Connection Failed (Server is inactive, or the server's IP address or port is invalid)
+
+[21/9/2023 11:13:24 AM] [Client Send] Connect To Server
+
+[21/9/2023 11:13:24 AM] [Error] Connection Failed (Server is inactive, or the server's IP address or port is invalid)
+
+[21/9/2023 11:13:26 AM] [Client Send] Connect To Server
+
+[21/9/2023 11:13:26 AM] [Error] Connection Failed (Server is inactive, or the server's IP address or port is invalid)
+
+[21/9/2023 11:13:28 AM] [Client Send] Connect To Server
+
+[21/9/2023 11:13:28 AM] [Error] Connection Failed (Server is inactive, or the server's IP address or port is invalid)
+
+[21/9/2023 11:13:30 AM] [Client Send] Connect To Server
+
+[21/9/2023 11:13:30 AM] [Error] Connection Failed (Server is inactive, or the server's IP address or port is invalid)
+
+[21/9/2023 11:13:32 AM] [Client Send] Connect To Server
+
+[21/9/2023 11:13:32 AM] [Server Reply] Hello from the server!
+
+[21/9/2023 11:13:32 AM] [Server Reply] Login Successful
+
+[21/9/2023 11:13:37 AM] [Client Send] Send new status: 2
+
+[21/9/2023 11:13:37 AM] [Server Reply] Machine Status (2) is updated successfully
+
+[21/9/2023 11:13:42 AM] [Client Send] Send new status: 2
+
+[21/9/2023 11:13:42 AM] [Server Reply] Machine Status (2) is updated successfully
+
+[21/9/2023 11:13:45 AM] [Client Send] Send new status: 2
+
+[21/9/2023 11:13:45 AM] [Server Reply] Machine Status (2) is updated successfully
+
+[21/9/2023 11:13:46 AM] [Client Send] Send new status: 1
+
+[21/9/2023 11:13:46 AM] [Server Reply] Machine Status (1) is updated successfully
+
+[21/9/2023 11:13:47 AM] [Client Send] Send new status: 2
+
+[21/9/2023 11:13:47 AM] [Server Reply] Machine Status (2) is updated successfully
+
+[21/9/2023 11:13:48 AM] [Client Send] Send new status: 1
+
+[21/9/2023 11:13:48 AM] [Server Reply] Machine Status (1) is updated successfully
+

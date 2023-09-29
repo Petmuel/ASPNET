@@ -1,0 +1,34 @@
+[21/9/2023 11:13:32 AM] [Client IP: 192.168.0.115] [Client Send]: Connection Request From Client (MID29)
+
+[21/9/2023 11:13:32 AM] [Client IP: 192.168.0.115] [Server Reply]: Client Connected Successfully (MID29)
+
+[21/9/2023 11:13:32 AM] [Client IP: 192.168.0.115] [MachineService]: Machine (ID: 29) Logged In Successfully.
+
+[21/9/2023 11:13:37 AM] [Client IP: 192.168.0.115] [Client Send]: Machine (ID: 29) Status Update As 2.
+
+[21/9/2023 11:13:37 AM] [Client IP: 192.168.0.115] [Server Reply]: Machine (ID: 29) Status Successfully Updated To 2.
+
+[21/9/2023 11:13:42 AM] [Client IP: 192.168.0.115] [Client Send]: Machine (ID: 29) Status Update As 2.
+
+[21/9/2023 11:13:42 AM] [Client IP: 192.168.0.115] [Server Reply]: Machine (ID: 29) Status Successfully Updated To 2.
+
+[21/9/2023 11:13:45 AM] [Client IP: 192.168.0.115] [Client Send]: Machine (ID: 29) Status Update As 2.
+
+[21/9/2023 11:13:45 AM] [Client IP: 192.168.0.115] [Server Reply]: Machine (ID: 29) Status Successfully Updated To 2.
+
+[21/9/2023 11:13:46 AM] [Client IP: 192.168.0.115] [Client Send]: Machine (ID: 29) Status Update As 1.
+
+[21/9/2023 11:13:46 AM] [Client IP: 192.168.0.115] [Server Reply]: Machine (ID: 29) Status Successfully Updated To 1.
+
+[21/9/2023 11:13:47 AM] [Client IP: 192.168.0.115] [Client Send]: Machine (ID: 29) Status Update As 2.
+
+[21/9/2023 11:13:47 AM] [Client IP: 192.168.0.115] [Server Reply]: Machine (ID: 29) Status Successfully Updated To 2.
+
+[21/9/2023 11:13:48 AM] [Client IP: 192.168.0.115] [Client Send]: Machine (ID: 29) Status Update As 1.
+
+[21/9/2023 11:13:48 AM] [Client IP: 192.168.0.115] [Server Reply]: Machine (ID: 29) Status Successfully Updated To 1.
+
+[21/9/2023 11:13:49 AM] [Client IP: 192.168.0.115] [Error] Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host. (MID29)
+
+[21/9/2023 11:13:49 AM] [Client IP: 192.168.0.115] Client Disconnected (MID29)
+

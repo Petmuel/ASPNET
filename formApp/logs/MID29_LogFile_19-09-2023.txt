@@ -1,0 +1,202 @@
+[19/9/2023 10:52:56 AM] [Client Send] Connect To Server
+
+[19/9/2023 10:52:58 AM] [Client Send] Connect To Server
+
+[19/9/2023 10:52:58 AM] [Error] Connection Failed (Server is not active or port connection is unavailable)
+
+[19/9/2023 10:53:00 AM] [Client Send] Connect To Server
+
+[19/9/2023 10:53:00 AM] [Error] Connection Failed (Server is not active or port connection is unavailable)
+
+[19/9/2023 10:53:02 AM] [Client Send] Connect To Server
+
+[19/9/2023 10:53:02 AM] [Error] Connection Failed (Server is not active or port connection is unavailable)
+
+[19/9/2023 10:53:04 AM] [Client Send] Connect To Server
+
+[19/9/2023 10:53:04 AM] [Error] Connection Failed (Server is not active or port connection is unavailable)
+
+[19/9/2023 10:53:06 AM] [Client Send] Connect To Server
+
+[19/9/2023 10:53:06 AM] [Error] Connection Failed (Server is not active or port connection is unavailable)
+
+[19/9/2023 10:53:08 AM] [Client Send] Connect To Server
+
+[19/9/2023 10:53:08 AM] [Error] Connection Failed (Server is not active or port connection is unavailable)
+
+[19/9/2023 10:53:10 AM] [Client Send] Connect To Server
+
+[19/9/2023 10:53:10 AM] [Error] Connection Failed (Server is not active or port connection is unavailable)
+
+[19/9/2023 10:53:12 AM] [Client Send] Connect To Server
+
+[19/9/2023 10:53:12 AM] [Error] Connection Failed (Server is not active or port connection is unavailable)
+
+[19/9/2023 10:53:14 AM] [Client Send] Connect To Server
+
+[19/9/2023 10:53:14 AM] [Error] Connection Failed (Server is not active or port connection is unavailable)
+
+[19/9/2023 10:53:16 AM] [Client Send] Connect To Server
+
+[19/9/2023 10:53:16 AM] [Error] Connection Failed (Server is not active or port connection is unavailable)
+
+[19/9/2023 10:53:18 AM] [Client Send] Connect To Server
+
+[19/9/2023 10:53:18 AM] [Error] Connection Failed (Server is not active or port connection is unavailable)
+
+[19/9/2023 10:53:20 AM] [Client Send] Connect To Server
+
+[19/9/2023 10:53:20 AM] [Error] Connection Failed (Server is not active or port connection is unavailable)
+
+[19/9/2023 10:53:22 AM] [Client Send] Connect To Server
+
+[19/9/2023 10:53:24 AM] [Client Send] Connect To Server
+
+[19/9/2023 10:53:24 AM] [Server Reply] Hello from the server!
+
+[19/9/2023 10:53:24 AM] [Server Reply] Login Successful
+
+[19/9/2023 10:53:29 AM] [Client Send] Send new status: 1
+
+[19/9/2023 10:53:29 AM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 10:53:34 AM] [Client Send] Send new status: 1
+
+[19/9/2023 10:53:34 AM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 10:53:39 AM] [Client Send] Send new status: 1
+
+[19/9/2023 10:53:39 AM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 10:53:44 AM] [Client Send] Send new status: 1
+
+[19/9/2023 10:53:44 AM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 10:53:49 AM] [Client Send] Send new status: 2
+
+[19/9/2023 10:53:49 AM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 10:53:54 AM] [Client Send] Send new status: 1
+
+[19/9/2023 10:53:54 AM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 10:53:59 AM] [Client Send] Send new status: 1
+
+[19/9/2023 10:53:59 AM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 10:54:04 AM] [Client Send] Send new status: 1
+
+[19/9/2023 10:54:04 AM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 10:54:09 AM] [Client Send] Send new status: 2
+
+[19/9/2023 10:54:09 AM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 10:54:14 AM] [Client Send] Send new status: 2
+
+[19/9/2023 10:54:14 AM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 10:54:19 AM] [Client Send] Send new status: 2
+
+[19/9/2023 10:54:19 AM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 10:54:24 AM] [Client Send] Send new status: 1
+
+[19/9/2023 10:54:24 AM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 10:54:29 AM] [Client Send] Send new status: 1
+
+[19/9/2023 10:54:29 AM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 11:00:34 AM] [Client Send] Connect To Server
+
+[19/9/2023 11:00:36 AM] [Client Send] Connect To Server
+
+[19/9/2023 11:00:36 AM] [Error] Connection Failed (Server is not active or port connection is unavailable)
+
+[19/9/2023 11:00:38 AM] [Client Send] Connect To Server
+
+[19/9/2023 11:00:38 AM] [Error] Connection Failed (Server is not active or port connection is unavailable)
+
+[19/9/2023 11:00:40 AM] [Client Send] Connect To Server
+
+[19/9/2023 11:00:40 AM] [Server Reply] Hello from the server!
+
+[19/9/2023 11:00:40 AM] [Server Reply] Login Successful
+
+[19/9/2023 11:00:45 AM] [Client Send] Send new status: 2
+
+[19/9/2023 11:00:45 AM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 11:00:50 AM] [Client Send] Send new status: 2
+
+[19/9/2023 11:00:50 AM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 11:00:55 AM] [Client Send] Send new status: 1
+
+[19/9/2023 11:00:55 AM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 11:01:00 AM] [Client Send] Send new status: 1
+
+[19/9/2023 11:01:00 AM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 11:01:49 AM] [Client Send] Connect To Server
+
+[19/9/2023 11:01:49 AM] [Server Reply] Hello from the server!
+
+[19/9/2023 11:01:49 AM] [Server Reply] Login Successful
+
+[19/9/2023 11:01:54 AM] [Client Send] Send new status: 2
+
+[19/9/2023 11:01:54 AM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 11:02:37 AM] [Client Send] Connect To Server
+
+[19/9/2023 11:02:37 AM] [Server Reply] Hello from the server!
+
+[19/9/2023 11:02:37 AM] [Server Reply] Login Successful
+
+[19/9/2023 11:02:42 AM] [Client Send] Send new status: 1
+
+[19/9/2023 11:02:42 AM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 11:03:27 AM] [Client Send] Connect To Server
+
+[19/9/2023 11:03:29 AM] [Client Send] Connect To Server
+
+[19/9/2023 11:03:29 AM] [Error] Connection Failed (Server is not active or port connection is unavailable)
+
+[19/9/2023 11:03:31 AM] [Client Send] Connect To Server
+
+[19/9/2023 11:03:31 AM] [Server Reply] Hello from the server!
+
+[19/9/2023 11:03:31 AM] [Server Reply] Login Successful
+
+[19/9/2023 11:03:36 AM] [Client Send] Send new status: 2
+
+[19/9/2023 11:03:36 AM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 11:03:41 AM] [Client Send] Send new status: 2
+
+[19/9/2023 11:03:41 AM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 11:08:38 AM] [Client Send] Connect To Server
+
+[19/9/2023 11:08:40 AM] [Client Send] Connect To Server
+
+[19/9/2023 11:08:40 AM] [Error] Connection Failed (Server is not active or port connection is unavailable)
+
+[19/9/2023 11:08:42 AM] [Client Send] Connect To Server
+
+[19/9/2023 11:08:42 AM] [Error] Connection Failed (Server is not active or port connection is unavailable)
+
+[19/9/2023 11:08:44 AM] [Client Send] Connect To Server
+
+[19/9/2023 11:08:44 AM] [Server Reply] Hello from the server!
+
+[19/9/2023 11:08:44 AM] [Server Reply] Login Successful
+
+[19/9/2023 11:08:49 AM] [Client Send] Send new status: 1
+
+[19/9/2023 11:08:49 AM] [Server Reply] Machine Status (1) is updated successfully
+

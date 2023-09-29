@@ -1,0 +1,10 @@
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient Machine2\formApp\bin\Debug\formApp.exe.config
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient Machine2\formApp\bin\Debug\formApp.exe
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient Machine2\formApp\bin\Debug\formApp.pdb
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient Machine2\formApp\obj\Debug\TCPClient_M2.csproj.AssemblyReference.cache
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient Machine2\formApp\obj\Debug\formApp.Form2.resources
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient Machine2\formApp\obj\Debug\formApp.Properties.Resources.resources
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient Machine2\formApp\obj\Debug\TCPClient_M2.csproj.GenerateResource.cache
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient Machine2\formApp\obj\Debug\TCPClient_M2.csproj.CoreCompileInputs.cache
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient Machine2\formApp\obj\Debug\formApp.exe
+C:\Users\samue\OneDrive\Desktop\ASPNET\TCPClient Machine2\formApp\obj\Debug\formApp.pdb

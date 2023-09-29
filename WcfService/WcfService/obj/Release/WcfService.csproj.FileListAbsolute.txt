@@ -1,0 +1,6 @@
+C:\Users\samue\OneDrive\Desktop\ASPNET\WcfService\WcfService\bin\WcfService.dll.config
+C:\Users\samue\OneDrive\Desktop\ASPNET\WcfService\WcfService\bin\WcfService.dll
+C:\Users\samue\OneDrive\Desktop\ASPNET\WcfService\WcfService\bin\WcfService.pdb
+C:\Users\samue\OneDrive\Desktop\ASPNET\WcfService\WcfService\obj\Release\WcfService.csproj.CoreCompileInputs.cache
+C:\Users\samue\OneDrive\Desktop\ASPNET\WcfService\WcfService\obj\Release\WcfService.dll
+C:\Users\samue\OneDrive\Desktop\ASPNET\WcfService\WcfService\obj\Release\WcfService.pdb

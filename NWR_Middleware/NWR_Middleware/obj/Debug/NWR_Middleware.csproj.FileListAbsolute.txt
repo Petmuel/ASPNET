@@ -1,0 +1,11 @@
+C:\Users\samue\OneDrive\Desktop\ASPNET\NWR_Middleware\NWR_Middleware\bin\Debug\NWR_Middleware.exe
+C:\Users\samue\OneDrive\Desktop\ASPNET\NWR_Middleware\NWR_Middleware\bin\Debug\NWR_Middleware.pdb
+C:\Users\samue\OneDrive\Desktop\ASPNET\NWR_Middleware\NWR_Middleware\obj\Debug\NWR_Middleware.csproj.AssemblyReference.cache
+C:\Users\samue\OneDrive\Desktop\ASPNET\NWR_Middleware\NWR_Middleware\obj\Debug\NWR_Middleware.csproj.CoreCompileInputs.cache
+C:\Users\samue\OneDrive\Desktop\ASPNET\NWR_Middleware\NWR_Middleware\obj\Debug\NWR_Middleware.exe
+C:\Users\samue\OneDrive\Desktop\ASPNET\NWR_Middleware\NWR_Middleware\obj\Debug\NWR_Middleware.pdb
+C:\Users\samue\OneDrive\Desktop\ASPNET\NWR_Middleware\NWR_Middleware\bin\Debug\NWR_Middleware.exe.manifest
+C:\Users\samue\OneDrive\Desktop\ASPNET\NWR_Middleware\NWR_Middleware\bin\Debug\NWR_Middleware.application
+C:\Users\samue\OneDrive\Desktop\ASPNET\NWR_Middleware\NWR_Middleware\obj\Debug\NWR_Middleware.exe.manifest
+C:\Users\samue\OneDrive\Desktop\ASPNET\NWR_Middleware\NWR_Middleware\obj\Debug\NWR_Middleware.application
+C:\Users\samue\OneDrive\Desktop\ASPNET\NWR_Middleware\NWR_Middleware\bin\Debug\NWR_Middleware.exe.config

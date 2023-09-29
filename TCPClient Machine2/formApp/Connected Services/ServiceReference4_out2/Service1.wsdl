@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:52597/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:52597/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:52597/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService1_logout_InputMessage">
+    <wsdl:part name="parameters" element="tns:logout" />
+  </wsdl:message>
+  <wsdl:message name="IService1_logout_OutputMessage">
+    <wsdl:part name="parameters" element="tns:logoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_stopTcp_InputMessage">
+    <wsdl:part name="parameters" element="tns:stopTcp" />
+  </wsdl:message>
+  <wsdl:message name="IService1_stopTcp_OutputMessage">
+    <wsdl:part name="parameters" element="tns:stopTcpResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_checkLoggedInUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:checkLoggedInUser" />
+  </wsdl:message>
+  <wsdl:message name="IService1_checkLoggedInUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:checkLoggedInUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getAllLogs_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllLogs" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getAllLogs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllLogsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_InsertUserDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertUserDetails" />
+  </wsdl:message>
+  <wsdl:message name="IService1_InsertUserDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertUserDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CheckUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckUser" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CheckUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getAllUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllUsers" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getAllUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateMachine_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateMachine" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateMachine_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateMachineResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateMachineName_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMachineName" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateMachineName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMachineNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteMachine_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMachine" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteMachine_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMachineResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getAllMachine_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllMachine" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getAllMachine_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllMachineResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService1">
+    <wsdl:operation name="logout">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/logout" message="tns:IService1_logout_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/logoutResponse" message="tns:IService1_logout_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="stopTcp">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/stopTcp" message="tns:IService1_stopTcp_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/stopTcpResponse" message="tns:IService1_stopTcp_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="checkLoggedInUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/checkLoggedInUser" message="tns:IService1_checkLoggedInUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/checkLoggedInUserResponse" message="tns:IService1_checkLoggedInUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllLogs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getAllLogs" message="tns:IService1_getAllLogs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getAllLogsResponse" message="tns:IService1_getAllLogs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/InsertUserDetails" message="tns:IService1_InsertUserDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/InsertUserDetailsResponse" message="tns:IService1_InsertUserDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CheckUser" message="tns:IService1_CheckUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CheckUserResponse" message="tns:IService1_CheckUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getAllUsers" message="tns:IService1_getAllUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getAllUsersResponse" message="tns:IService1_getAllUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateUser" message="tns:IService1_UpdateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateUserResponse" message="tns:IService1_UpdateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteUser" message="tns:IService1_DeleteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteUserResponse" message="tns:IService1_DeleteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateMachine">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateMachine" message="tns:IService1_CreateMachine_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateMachineResponse" message="tns:IService1_CreateMachine_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMachineName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateMachineName" message="tns:IService1_UpdateMachineName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateMachineNameResponse" message="tns:IService1_UpdateMachineName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMachine">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteMachine" message="tns:IService1_DeleteMachine_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteMachineResponse" message="tns:IService1_DeleteMachine_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllMachine">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getAllMachine" message="tns:IService1_getAllMachine_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getAllMachineResponse" message="tns:IService1_getAllMachine_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="logout">
+      <soap:operation soapAction="http://tempuri.org/IService1/logout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="stopTcp">
+      <soap:operation soapAction="http://tempuri.org/IService1/stopTcp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkLoggedInUser">
+      <soap:operation soapAction="http://tempuri.org/IService1/checkLoggedInUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllLogs">
+      <soap:operation soapAction="http://tempuri.org/IService1/getAllLogs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserDetails">
+      <soap:operation soapAction="http://tempuri.org/IService1/InsertUserDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUser">
+      <soap:operation soapAction="http://tempuri.org/IService1/CheckUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllUsers">
+      <soap:operation soapAction="http://tempuri.org/IService1/getAllUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMachine">
+      <soap:operation soapAction="http://tempuri.org/IService1/CreateMachine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMachineName">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateMachineName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMachine">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteMachine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllMachine">
+      <soap:operation soapAction="http://tempuri.org/IService1/getAllMachine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="BasicHttpBinding_IService1" binding="tns:BasicHttpBinding_IService1">
+      <soap:address location="http://localhost:52597/Service1.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

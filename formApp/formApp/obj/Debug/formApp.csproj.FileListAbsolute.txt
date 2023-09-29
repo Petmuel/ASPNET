@@ -19,3 +19,14 @@ C:\Users\samue\OneDrive\Desktop\ASP.Net\formApp\formApp\obj\Debug\formApp.csproj
 C:\Users\samue\OneDrive\Desktop\ASP.Net\formApp\formApp\obj\Debug\formApp.csproj.CoreCompileInputs.cache
 C:\Users\samue\OneDrive\Desktop\ASP.Net\formApp\formApp\obj\Debug\formApp.exe
 C:\Users\samue\OneDrive\Desktop\ASP.Net\formApp\formApp\obj\Debug\formApp.pdb
+C:\Users\samue\OneDrive\Desktop\ASPNET\formApp\formApp\bin\Debug\formApp.exe.config
+C:\Users\samue\OneDrive\Desktop\ASPNET\formApp\formApp\bin\Debug\formApp.exe
+C:\Users\samue\OneDrive\Desktop\ASPNET\formApp\formApp\bin\Debug\formApp.pdb
+C:\Users\samue\OneDrive\Desktop\ASPNET\formApp\formApp\obj\Debug\formApp.csproj.AssemblyReference.cache
+C:\Users\samue\OneDrive\Desktop\ASPNET\formApp\formApp\obj\Debug\formApp.Form1.resources
+C:\Users\samue\OneDrive\Desktop\ASPNET\formApp\formApp\obj\Debug\formApp.Form2.resources
+C:\Users\samue\OneDrive\Desktop\ASPNET\formApp\formApp\obj\Debug\formApp.Properties.Resources.resources
+C:\Users\samue\OneDrive\Desktop\ASPNET\formApp\formApp\obj\Debug\formApp.csproj.GenerateResource.cache
+C:\Users\samue\OneDrive\Desktop\ASPNET\formApp\formApp\obj\Debug\formApp.csproj.CoreCompileInputs.cache
+C:\Users\samue\OneDrive\Desktop\ASPNET\formApp\formApp\obj\Debug\formApp.exe
+C:\Users\samue\OneDrive\Desktop\ASPNET\formApp\formApp\obj\Debug\formApp.pdb

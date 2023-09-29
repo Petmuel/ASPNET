@@ -1,0 +1,816 @@
+[19/9/2023 3:50:10 PM] [Client Send] Connect To Server
+
+[19/9/2023 3:50:10 PM] [Server Reply] Hello from the server!
+
+[19/9/2023 3:50:10 PM] [Server Reply] Login Successful
+
+[19/9/2023 3:50:15 PM] [Client Send] Send new status: 1
+
+[19/9/2023 3:50:15 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 3:50:20 PM] [Client Send] Send new status: 2
+
+[19/9/2023 3:50:20 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 3:50:25 PM] [Client Send] Send new status: 2
+
+[19/9/2023 3:50:25 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 3:50:30 PM] [Client Send] Send new status: 2
+
+[19/9/2023 3:50:30 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 3:50:35 PM] [Client Send] Send new status: 2
+
+[19/9/2023 3:50:35 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 3:50:40 PM] [Client Send] Send new status: 1
+
+[19/9/2023 3:50:40 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 3:50:45 PM] [Client Send] Send new status: 1
+
+[19/9/2023 3:50:45 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 3:50:50 PM] [Client Send] Send new status: 1
+
+[19/9/2023 3:50:50 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 3:50:55 PM] [Client Send] Send new status: 1
+
+[19/9/2023 3:50:55 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 3:51:00 PM] [Client Send] Send new status: 2
+
+[19/9/2023 3:51:00 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 3:57:38 PM] [Error] Connection Failed (Server is inactive, or the server's IP address or port is invalid)
+
+[19/9/2023 3:57:39 PM] [Client Send] Connect To Server
+
+[19/9/2023 3:58:34 PM] [Error] Connection Failed (Server is inactive, or the server's IP address or port is invalid)
+
+[19/9/2023 3:58:34 PM] [Client Send] Connect To Server
+
+[19/9/2023 3:58:36 PM] [Client Send] Connect To Server
+
+[19/9/2023 3:58:37 PM] [Error] Connection Failed (Server is inactive, or the server's IP address or port is invalid)
+
+[19/9/2023 3:58:38 PM] [Client Send] Connect To Server
+
+[19/9/2023 3:58:39 PM] [Error] Connection Failed (Server is inactive, or the server's IP address or port is invalid)
+
+[19/9/2023 3:58:40 PM] [Client Send] Connect To Server
+
+[19/9/2023 3:58:41 PM] [Error] Connection Failed (Server is inactive, or the server's IP address or port is invalid)
+
+[19/9/2023 3:58:42 PM] [Client Send] Connect To Server
+
+[19/9/2023 3:58:43 PM] [Error] Connection Failed (Server is inactive, or the server's IP address or port is invalid)
+
+[19/9/2023 3:58:44 PM] [Client Send] Connect To Server
+
+[19/9/2023 3:58:45 PM] [Server Reply] Hello from the server!
+
+[19/9/2023 3:58:45 PM] [Server Reply] Login Successful
+
+[19/9/2023 3:58:50 PM] [Client Send] Send new status: 1
+
+[19/9/2023 3:58:50 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 3:58:55 PM] [Client Send] Send new status: 1
+
+[19/9/2023 3:58:55 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 3:59:00 PM] [Client Send] Send new status: 1
+
+[19/9/2023 3:59:00 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 3:59:05 PM] [Client Send] Send new status: 2
+
+[19/9/2023 3:59:05 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 3:59:10 PM] [Client Send] Send new status: 2
+
+[19/9/2023 3:59:10 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 3:59:15 PM] [Client Send] Send new status: 2
+
+[19/9/2023 3:59:15 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 3:59:20 PM] [Client Send] Send new status: 1
+
+[19/9/2023 3:59:20 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 3:59:25 PM] [Client Send] Send new status: 1
+
+[19/9/2023 3:59:25 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 3:59:26 PM] [Client Send] Send new status: 2
+
+[19/9/2023 3:59:26 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 3:59:27 PM] [Client Send] Send new status: 1
+
+[19/9/2023 3:59:27 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 3:59:28 PM] [Client Send] Send new status: 2
+
+[19/9/2023 3:59:28 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 3:59:29 PM] [Client Send] Send new status: 1
+
+[19/9/2023 3:59:29 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 3:59:32 PM] [Client Send] Send new status: 2
+
+[19/9/2023 3:59:32 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 3:59:34 PM] [Client Send] Send new status: 2
+
+[19/9/2023 3:59:34 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 3:59:36 PM] [Client Send] Send new status: 2
+
+[19/9/2023 3:59:36 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 3:59:38 PM] [Client Send] Send new status: 1
+
+[19/9/2023 3:59:38 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 3:59:40 PM] [Client Send] Send new status: 1
+
+[19/9/2023 3:59:40 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 3:59:42 PM] [Client Send] Send new status: 1
+
+[19/9/2023 3:59:42 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 3:59:44 PM] [Client Send] Send new status: 2
+
+[19/9/2023 3:59:44 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 3:59:46 PM] [Client Send] Send new status: 2
+
+[19/9/2023 3:59:46 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 3:59:48 PM] [Client Send] Send new status: 2
+
+[19/9/2023 3:59:48 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 3:59:50 PM] [Client Send] Send new status: 2
+
+[19/9/2023 3:59:50 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 3:59:52 PM] [Client Send] Send new status: 1
+
+[19/9/2023 3:59:52 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 3:59:54 PM] [Client Send] Send new status: 1
+
+[19/9/2023 3:59:54 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 3:59:56 PM] [Client Send] Send new status: 1
+
+[19/9/2023 3:59:56 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 3:59:58 PM] [Client Send] Send new status: 2
+
+[19/9/2023 3:59:58 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:00:00 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:00:00 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:00:02 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:00:02 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:00:04 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:00:04 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:00:06 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:00:06 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:00:08 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:00:08 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:00:10 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:00:10 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:00:12 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:00:12 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:00:14 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:00:14 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:00:16 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:00:16 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:00:18 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:00:18 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:00:20 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:00:20 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:00:22 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:00:22 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:00:24 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:00:24 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:00:26 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:00:26 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:00:28 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:00:28 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:00:30 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:00:30 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:00:32 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:00:32 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:00:34 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:00:34 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:00:36 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:00:36 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:00:38 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:00:38 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:00:40 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:00:40 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:00:42 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:00:42 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:00:44 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:00:44 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:00:46 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:00:46 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:00:48 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:00:48 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:00:50 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:00:50 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:00:52 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:00:52 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:00:54 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:00:54 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:00:56 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:00:56 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:00:58 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:00:58 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:01:00 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:01:00 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:01:02 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:01:02 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:01:04 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:01:04 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:01:06 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:01:06 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:01:08 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:01:08 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:01:10 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:01:10 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:01:12 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:01:12 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:01:14 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:01:14 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:01:16 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:01:16 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:01:18 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:01:18 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:01:20 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:01:20 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:01:22 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:01:22 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:01:24 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:01:24 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:01:26 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:01:26 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:01:28 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:01:28 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:01:30 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:01:30 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:01:32 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:01:32 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:01:34 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:01:34 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:01:36 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:01:36 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:01:38 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:01:38 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:01:40 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:01:40 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:01:42 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:01:42 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:01:44 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:01:44 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:01:46 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:01:46 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:01:48 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:01:48 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:01:50 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:01:50 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:01:52 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:01:52 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:01:54 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:01:54 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:01:56 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:01:56 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:01:58 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:01:58 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:02:00 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:02:00 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:02:11 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:02:11 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:02:21 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:02:21 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:02:31 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:02:31 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:02:41 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:02:41 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:02:51 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:02:51 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:03:01 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:03:01 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:03:11 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:03:11 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:03:21 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:03:21 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:03:31 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:03:31 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:03:41 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:03:41 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:03:51 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:03:51 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:04:01 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:04:01 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:04:11 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:04:11 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:04:21 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:04:21 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:04:31 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:04:31 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:04:41 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:04:41 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:04:51 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:04:51 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:05:01 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:05:01 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:05:11 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:05:11 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:05:21 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:05:21 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:05:31 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:05:31 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:05:41 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:05:41 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:05:51 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:05:51 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:06:01 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:06:01 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:06:11 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:06:11 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:06:21 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:06:21 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:06:31 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:06:31 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:06:41 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:06:41 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:06:51 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:06:51 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:07:01 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:07:01 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:07:11 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:07:11 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:07:21 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:07:21 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:07:31 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:07:31 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:07:41 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:07:41 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:07:51 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:07:51 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:08:01 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:08:01 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:08:11 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:08:11 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:08:21 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:08:21 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:08:31 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:08:31 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:08:41 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:08:41 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:08:51 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:08:51 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:09:01 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:09:01 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:09:11 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:09:11 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:09:21 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:09:21 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:09:31 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:09:31 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:09:41 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:09:41 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:09:51 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:09:51 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:10:01 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:10:01 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:10:11 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:10:11 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:10:21 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:10:21 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:10:31 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:10:31 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:10:41 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:10:41 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:10:51 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:10:51 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:11:01 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:11:01 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:11:11 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:11:11 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:11:21 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:11:21 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:11:31 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:11:31 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:11:41 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:11:41 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:11:51 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:11:51 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:12:01 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:12:01 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:12:11 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:12:11 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:12:21 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:12:21 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:12:31 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:12:31 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:12:41 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:12:41 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:12:51 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:12:51 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:13:01 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:13:01 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:13:11 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:13:11 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:13:21 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:13:21 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:13:31 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:13:31 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:13:41 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:13:41 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:13:51 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:13:51 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:14:01 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:14:01 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:14:11 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:14:11 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:14:21 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:14:21 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:14:31 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:14:31 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:14:41 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:14:41 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:14:51 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:14:51 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:15:01 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:15:01 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:15:11 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:15:11 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:15:21 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:15:21 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:15:31 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:15:31 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:15:41 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:15:41 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:15:51 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:15:51 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:16:01 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:16:01 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:16:11 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:16:11 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:16:21 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:16:21 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:16:31 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:16:31 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:16:41 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:16:41 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:16:51 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:16:51 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:17:01 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:17:01 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:17:11 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:17:11 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:17:21 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:17:21 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:17:31 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:17:31 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:17:41 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:17:41 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:17:51 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:17:51 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:18:01 PM] [Client Send] Send new status: 1
+
+[19/9/2023 4:18:01 PM] [Server Reply] Machine Status (1) is updated successfully
+
+[19/9/2023 4:18:11 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:18:11 PM] [Server Reply] Machine Status (2) is updated successfully
+
+[19/9/2023 4:18:21 PM] [Client Send] Send new status: 2
+
+[19/9/2023 4:18:21 PM] [Server Reply] Machine Status (2) is updated successfully
+

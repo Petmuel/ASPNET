@@ -1,0 +1,11 @@
+C:\Users\samue\OneDrive\Desktop\ASPNET\wcfConsoleApp\wcfConsoleApp\bin\Debug\wcfConsoleApp.exe.config
+C:\Users\samue\OneDrive\Desktop\ASPNET\wcfConsoleApp\wcfConsoleApp\bin\Debug\wcfConsoleApp.exe
+C:\Users\samue\OneDrive\Desktop\ASPNET\wcfConsoleApp\wcfConsoleApp\bin\Debug\wcfConsoleApp.pdb
+C:\Users\samue\OneDrive\Desktop\ASPNET\wcfConsoleApp\wcfConsoleApp\bin\Debug\WcfService.pdb
+C:\Users\samue\OneDrive\Desktop\ASPNET\wcfConsoleApp\wcfConsoleApp\obj\Debug\wcfConsoleApp.csproj.AssemblyReference.cache
+C:\Users\samue\OneDrive\Desktop\ASPNET\wcfConsoleApp\wcfConsoleApp\obj\Debug\wcfConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\samue\OneDrive\Desktop\ASPNET\wcfConsoleApp\wcfConsoleApp\obj\Debug\wcfConsoleApp.csproj.CopyComplete
+C:\Users\samue\OneDrive\Desktop\ASPNET\wcfConsoleApp\wcfConsoleApp\obj\Debug\wcfConsoleApp.exe
+C:\Users\samue\OneDrive\Desktop\ASPNET\wcfConsoleApp\wcfConsoleApp\obj\Debug\wcfConsoleApp.pdb
+C:\Users\samue\OneDrive\Desktop\ASPNET\wcfConsoleApp\wcfConsoleApp\bin\Debug\WcfService.dll
+C:\Users\samue\OneDrive\Desktop\ASPNET\wcfConsoleApp\wcfConsoleApp\bin\Debug\WcfService.dll.config

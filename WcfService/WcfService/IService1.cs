@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.ServiceModel.Description;
 using System.ServiceModel.Web;
 using System.Text;
 
@@ -18,7 +19,8 @@ namespace WcfService
         void logout();
 
         [OperationContract]
-        void stopTcp();
+        void StartListener();
+
 
         [OperationContract]
         string checkLoggedInUser();
@@ -54,6 +56,18 @@ namespace WcfService
         DataTable getAllMachine();
 
         //[OperationContract]
+        //void writeLogs(string info);
+
+        //[OperationContract]
+        //string sendData(string response);
+
+        //[OperationContract]
+        //string sendDataTable(DataTable dt);
+
+        //[OperationContract]
+        //string[] ConvertDataTableToStringArray(DataTable dt);
+
+        //[OperationContract]
         //void changeTimer(int seconds);
 
         //[OperationContract]
@@ -84,5 +98,53 @@ namespace WcfService
     //    }
     //}
 
-    
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            //Uri baseAddress = new Uri("http://localhost:52597/Service1.svc");
+            //ServiceHost host = new ServiceHost(typeof(Service1), baseAddress);
+            Service1 client = new Service1();
+            client.StartListener();
+            //try
+            //{
+            //    // Add a service endpoint
+            //    //host.AddServiceEndpoint(typeof(IService1), new BasicHttpBinding(), "http://localhost:52597/Service1.svc");
+
+            //    // Enable metadata publishing (for testing purposes)
+            //    ServiceMetadataBehavior smb = new ServiceMetadataBehavior
+            //    {
+            //        HttpGetEnabled = true
+            //    };
+            //    //host.Description.Behaviors.Add(smb);
+
+            //    // Open the service host
+            //    host.Open();
+                
+            //    Console.WriteLine("Service is running. Press Enter to exit.");
+            //    Console.ReadLine();
+            //}
+            ////A binding instance has already been associated to listen URI 'http://localhost:52597/Service1.svc'.
+            ////If two endpoints want to share the same ListenUri, they must also share the same binding object instance.
+            ////The two conflicting endpoints were either specified in AddServiceEndpoint() calls, in a config file,
+            ////or a combination of AddServiceEndpoint() and config. 
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("An error occurred: " + ex.Message);
+            //    host.Abort();
+            //}
+            //finally
+            //{
+            //    // Close the service host
+            //    host.Close();
+            //}
+        }
+    }
+
+
+
+
+
 }

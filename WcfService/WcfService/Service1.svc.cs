@@ -11,6 +11,7 @@ using System.Timers;
 using System.Net.Sockets;
 using System.Net;
 using System.IO;
+using System.Threading;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 using System.Xml;
@@ -23,141 +24,402 @@ namespace WcfService
     public class Service1 : IService1
     {
         private const string V = "Server=SAMUELHAN; Database=newDb; User Id=sa; Password=sasa;";
-        public Timer _timer = new Timer (10000);
-        SqlConnection sqlConn = new SqlConnection();
+        public System.Timers.Timer _timer = new System.Timers.Timer(1000);
+        SqlConnection sqlConn = new SqlConnection(V);
         private int randIndex;
         public string userEmailLoggedIn="";
         private DataTable machines = new DataTable();
-        //private static TcpListener tcpListener = new TcpListener(IPAddress.Parse("127.0.0.1"), 12345);
-        private TcpListener listener;
-        //private bool isListenerRunning = false;
-        // Static constructor 
-        private bool isRunning = false;
+        private TcpListener listener;        private bool isRunning = false;
         public Service1()
         {
-            this.sqlConn.ConnectionString = V;
-            if (isRunning==false)
-            {
-                this.StartListener();
-            }
             this.machines = this.getAllMachine();
+            StartListener();
+        }
+        private void TimerCallback(object state)
+        {
+            Console.WriteLine("hi");
+            this.sqlConn.Close();
+            this.sqlConn.ConnectionString = V;
+            this.sqlConn.Open();
+            DataRow row = this.machines.Rows[this.randIndex];
+            int id = Convert.ToInt32(row["MachineID"]);
+            int status = Convert.ToInt32(row["MachineStatus"]);
 
-            if (this.machines.Rows.Count > 0)
+            // Set flag to prevent concurrent updates
+            this.UpdateMachineStatusRand(status, id);
+        }
+
+        public void StartListener()
+        {
+            listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 12345);
+            listener.Start();
+            isRunning = true;
+
+            Console.WriteLine("Server is listening for incoming connections...");
+
+            while (isRunning)
             {
-                if (this._timer==null||this._timer.Enabled)
+                try
                 {
-                    Random rnd = new Random();
-                    this.randIndex = rnd.Next(0, this.getAllMachine().Rows.Count);
-                    if (this._timer != null)
-                    {
-                        this._timer.Dispose();
-                        this._timer.Elapsed += null;
-                        this._timer.Stop();
-                        this._timer=null;
-                    }
-                    this.InitializeTimer();
+                    TcpClient client = listener.AcceptTcpClient();
+
+                    // Create a new thread to handle the client
+                    Thread clientThread = new Thread(() => HandleClient(client));
+                    clientThread.Start();
                 }
-                else
+                catch (SocketException ex)
                 {
-                    Random rnd = new Random();
-                    this.randIndex = rnd.Next(0, this.machines.Rows.Count);
-                    this.InitializeTimer();
+                    Console.WriteLine($"SocketException: {ex.Message}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Exception: {ex.Message}");
                 }
             }
         }
 
-        private void StartListener()
+        private void HandleClient(TcpClient client)
         {
-            string response = "";
+            string info = "";
+            string MID = "";
+            string clientIP = "";
             try
             {
-                listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 12345);
-                listener.Start();
-                isRunning = true;
-
-                while (isRunning)
+                NetworkStream stream = client.GetStream();
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                string response = "";
+                while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
                 {
-                    //Waiting for a connection...
-                    TcpClient client = listener.AcceptTcpClient();
-                    //client connected
+                    string email = "";
+                    string MPassword = "";
+                    string data = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                    string[] splitString = { "", "", "" };
+                    string command = data;
+                    string result = "";
+                    string checkUserResult = "";
 
-                    NetworkStream stream = client.GetStream();
-                    byte[] buffer = new byte[1024];
-                    int bytesRead;
-                    
-                    while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
+                    if (data.Contains('-'))
                     {
-                        string data = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                        string[] splitString = { "", "", "" };
-                        string command = data;
-                        Console.WriteLine($"Received: {data}");
-                        if (data.Contains('-'))
-                        {
-                            splitString = data.Split('-');
-                            command = splitString[0];
-                        }
-                        switch (command)
-                        {
-                            case "connectServer":
-                                response = "Hello from the server!";
-                                this.SendData(stream, response);
-                                //SendDataTable(stream, this.getAllLogs());
-                                break;
-                            case "login":
-                                string email = splitString[1];
-                                string password = splitString[2]; 
-                                if(this.CheckUser(email, password).Equals("Login Successful"))
+                        splitString = data.Split('-');
+                        command = splitString[0];
+                    }
+
+                    switch (command)
+                    {
+                        case "connectServer":
+                            MID = splitString[1];
+                            clientIP = splitString[2];
+                            response = "Hello from the server!";
+                            info = " [Client IP: " + clientIP + "] [Client Send]: Connection Request From Client (MID" + MID+")" + System.Environment.NewLine;
+                            this.writeLog(info, MID);
+
+                            result = this.SendData(stream, response);
+                            if (result.Equals("true"))
+                            {
+                                info = " [Client IP: " + clientIP + "] [Server Reply]: Client Connected Successfully (MID" + MID + ")" + System.Environment.NewLine;
+                            }
+                            else
+                            {
+                                info = " [Client IP: " + splitString[1] + "] [Server Error Reply]: " + result + System.Environment.NewLine;
+                            }
+                            this.writeLog(info, MID);
+                            break;
+                        case "MachineLogin":
+                            MID = splitString[1];
+                            MPassword = splitString[2];
+                            clientIP = splitString[3];
+                            //check user exists or not
+                            checkUserResult = this.checkMachine(MID, MPassword);
+                            //this.writeLog(" [Client IP: " + clientIP + "] [Client Send]: Login Request - Check Existing User (Email: '" + email + "', Password: '" + password + "') " + System.Environment.NewLine);
+                            if (checkUserResult.Equals("Login Successful"))
+                            {
+                                response = checkUserResult;
+                                result = this.SendData(stream, response);
+                                if (result.Equals("true"))
                                 {
-                                    DataTable dt = this.getAllLogs();
-                                    // Convert the DataTable to XML
-                                    string[] responseArray = this.ConvertDataTableToStringArray(dt);
-                                    response = string.Join(";", responseArray);
-                                    this.SendDataTable(stream, response);
+                                    info = " [Client IP: " + clientIP + "] [MachineService]: Machine (ID: " + MID + ") Logged In Successfully." + System.Environment.NewLine;
+                                    this.writeLog(info, MID);
                                 }
                                 else
                                 {
-                                    response = "Wrong email or password";
-                                    this.SendDataTable(stream, response);
+                                    info = " [Client IP: " + clientIP + "] [Server Error Reply]: Failed Sending Error Message: " + response + System.Environment.NewLine;
                                 }
-                                break;
-                            case "getAuditLogin":
-                                    DataTable dtAudit = this.getAllAuditLogs();
-                                    // Convert the DataTable to XML
-                                    string[] auditResponseArray = this.ConvertDataTableToStringArray(dtAudit);
-                                    response = string.Join(";", auditResponseArray);
-                                    this.SendDataTable(stream, response);
-                                break;
-                            case "disconnect":
-                                response = "Disconnected";
-                                this.TCPClientDisconnect();
-                                this.SendData(stream, response);
-                                this.stopTcp();
-                                break;
-                            case "getLogs":
-                                
-                                break;
-                        }
-                        
+                            }
+                            else
+                            {
+                                response = checkUserResult;
+                                result = this.SendData(stream, response);
+                                if (result.Equals("true"))
+                                {
+                                    info = " [Client IP: " + clientIP + "] [Server Reply]: Machine Login Failed (" + response + ")" + System.Environment.NewLine;
+                                    this.writeLog(info, MID);
+                                }
+                                else
+                                {
+                                    info = " [Client IP: " + clientIP + "] [Server Error Reply]: Failed Sending Error Message: " + response + System.Environment.NewLine;
+                                }
+                            }
+                            break;
+                        case "updateMachineStatus":
+                            MID = splitString[1];
+                            int status = int.Parse(splitString[2]);
+                            clientIP = splitString[3];
+                            info = " [Client IP: " + clientIP + "] [Client Send]: Machine (ID: " + MID + ") Status Update As " + status + "." + System.Environment.NewLine;
+                            this.writeLog(info, MID);
+                            response = this.UpdateMachineStatus(status, MID);
+                            if (response.Contains("Failed"))
+                            {
+
+                                if (this.SendData(stream, response).Equals("true"))
+                                {
+                                    info = " [Client IP: " + clientIP + "] [Server Reply]: " + response + System.Environment.NewLine;
+                                    this.writeLog(info, MID);
+                                }
+                                else
+                                {
+                                    info = " [Client IP: " + clientIP + "] [Server Error Reply]: Failed Sending Error Message: " + response + System.Environment.NewLine;
+                                }
+                            }
+                            else
+                            {
+                                if (this.SendData(stream, response).Equals("true"))
+                                {
+                                    info = " [Client IP: " + clientIP + "] [Server Reply]: " + response + System.Environment.NewLine;
+                                    this.writeLog(info, MID);
+                                }
+                                else
+                                {
+                                    info = " [Client IP: " + clientIP + "] [Server Error Reply]: Failed Sending Error Message: " + response + System.Environment.NewLine;
+                                }
+                            }
+                            break;
                     }
-                    client.Close();
+
+                }
+            }
+            catch (SocketException ex)
+            {
+                info = " [Client IP: " + clientIP + "] [Error] " + ex.Message + " (MID" + MID + ")" + System.Environment.NewLine;
+                this.writeLog(info, MID);
+            }
+            catch (Exception ex)
+            {
+                info = " [Client IP: " + clientIP + "] [Error] " + ex.Message + " (MID" + MID + ")" + System.Environment.NewLine;
+                this.writeLog(info, MID);
+            }
+            finally
+            {
+                client.Close();
+                info = " [Client IP: " + clientIP + "] Client Disconnected (MID" + MID + ")" + System.Environment.NewLine;
+                this.writeLog(info, MID);
+                //Console.WriteLine("Client disconnected.");
+            }
+        }
+
+        //public void StartListener()
+        //{
+        //    while (true)
+        //    {
+        //        string MID = "";
+        //        string clientIP = "";
+        //        listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 12345);
+        //        string response = "";
+        //        try
+        //        {
+        //            listener.Start();
+        //            isRunning = true;
+
+        //            while (isRunning)
+        //            {
+        //                //Waiting for a connection...
+        //                TcpClient client = listener.AcceptTcpClient();
+        //                //listener.AcceptSocket();
+        //                NetworkStream stream = client.GetStream();
+        //                byte[] buffer = new byte[1024];
+        //                int bytesRead;
+
+        //                while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
+        //                {
+        //                    string info = "";
+        //                    string email = "";
+        //                    string MPassword = "";
+        //                    string data = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+        //                    string[] splitString = { "", "", "" };
+        //                    string command = data;
+        //                    string result = "";
+        //                    string checkUserResult = "";
+        //                    //Console.WriteLine($"Received: {data}");
+        //                    if (data.Contains('-'))
+        //                    {
+        //                        splitString = data.Split('-');
+        //                        command = splitString[0];
+        //                    }
+        //                    switch (command)
+        //                    {
+        //                        case "connectServer":
+        //                            MID = splitString[1];
+        //                            clientIP = splitString[2];
+        //                            response = "Hello from the server!";
+        //                            info = " [Client IP: " + clientIP + "] [Client Send]: Conenction Request From Client" + System.Environment.NewLine;
+        //                            this.writeLog(info, MID);
+
+        //                            result = this.SendData(stream, response);
+        //                            if (result.Equals("true"))
+        //                            {
+        //                                info = " [Client IP: " + clientIP + "] [Server Reply]: Client Connected Successfully" + System.Environment.NewLine;
+        //                            }
+        //                            else
+        //                            {
+        //                                info = " [Client IP: " + splitString[1] + "] [Server Error Reply]: " + result + System.Environment.NewLine;
+        //                            }
+        //                            this.writeLog(info, MID);
+        //                            break;
+        //                        case "MachineLogin":
+        //                            MID = splitString[1];
+        //                            MPassword = splitString[2];
+        //                            clientIP = splitString[3];
+        //                            //check user exists or not
+        //                            checkUserResult = this.checkMachine(MID, MPassword);
+        //                            //this.writeLog(" [Client IP: " + clientIP + "] [Client Send]: Login Request - Check Existing User (Email: '" + email + "', Password: '" + password + "') " + System.Environment.NewLine);
+        //                            if (checkUserResult.Equals("Login Successful"))
+        //                            {
+        //                                response = checkUserResult;
+        //                                result = this.SendData(stream, response);
+        //                                if (result.Equals("true"))
+        //                                {
+        //                                    info = " [Client IP: " + clientIP + "] [MachineService]: Machine (ID: " + MID + ") Logged In Successfully." + System.Environment.NewLine;
+        //                                    this.writeLog(info, MID);
+        //                                }
+        //                                else
+        //                                {
+        //                                    info = " [Client IP: " + clientIP + "] [Server Error Reply]: Failed Sending Error Message: " + response + System.Environment.NewLine;
+        //                                }
+        //                            }
+        //                            else
+        //                            {
+        //                                response = checkUserResult;
+        //                                result = this.SendData(stream, response);
+        //                                if (result.Equals("true"))
+        //                                {
+        //                                    info = " [Client IP: " + clientIP + "] [Server Reply]: Machine Login Failed (" + response + ")" + System.Environment.NewLine;
+        //                                    this.writeLog(info, MID);
+        //                                }
+        //                                else
+        //                                {
+        //                                    info = " [Client IP: " + clientIP + "] [Server Error Reply]: Failed Sending Error Message: " + response + System.Environment.NewLine;
+        //                                }
+        //                            }
+        //                            break;
+        //                        case "updateMachineStatus":
+        //                            MID = splitString[1];
+        //                            int status = int.Parse(splitString[2]);
+        //                            clientIP = splitString[3];
+        //                            info = " [Client IP: " + clientIP + "] [Client Send]: Machine (ID: " + MID + ") Status Update As " + status + "." + System.Environment.NewLine;
+        //                            this.writeLog(info, MID);
+        //                            response = this.UpdateMachineStatus(status, MID);
+        //                            if (response.Contains("Failed")){
+                                        
+        //                                if (this.SendData(stream, response).Equals("true"))
+        //                                {
+        //                                    info = " [Client IP: " + clientIP + "] [Server Reply]: " + response + System.Environment.NewLine;
+        //                                    this.writeLog(info, MID);
+        //                                }
+        //                                else
+        //                                {
+        //                                    info = " [Client IP: " + clientIP + "] [Server Error Reply]: Failed Sending Error Message: " + response + System.Environment.NewLine;
+        //                                }
+        //                            }
+        //                            else
+        //                            {
+        //                                if (this.SendData(stream, response).Equals("true"))
+        //                                {
+        //                                    info = " [Client IP: " + clientIP + "] [Server Reply]: " + response + System.Environment.NewLine;
+        //                                    this.writeLog(info, MID);
+        //                                }
+        //                                else
+        //                                {
+        //                                    info = " [Client IP: " + clientIP + "] [Server Error Reply]: Failed Sending Error Message: " + response + System.Environment.NewLine;
+        //                                }
+        //                            }
+        //                            break;
+        //                    }
+        //                }
+        //                client.Close();
+        //            }
+        //        }
+        //        catch (SocketException ex)
+        //        {
+        //            Console.WriteLine($"SocketException: {ex.Message}");
+        //            //this.TCPClientDisconnect();
+        //            // Add a delay before retrying
+        //            Thread.Sleep(5000); // Adjust the delay as needed
+        //        }
+        //        catch (InvalidOperationException ex)
+        //        {
+        //            Console.WriteLine($"ObjectDisposedException: {ex.Message}");
+        //            // Add a delay before retrying
+        //            Thread.Sleep(5000); // Adjust the delay as needed
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            //Console.WriteLine("Error service: " + ex.Message);
+        //            if(ex.Message.Equals("Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host."))
+        //            {
+        //                this.writeLog(" [Client IP: " + clientIP + "] [Error] " + ex.Message + " (MID" + MID + ")", MID);
+        //            }
+        //        }
+        //        finally
+        //        {
+        //            isRunning = false; // Server is no longer running
+        //            if (listener != null)
+        //            {
+        //                listener.Stop();
+        //            }
+        //        }
+        //    }
+        //}
+        //[DateNow] [Client IP] [Com Type] : [event info]
+        public void writeLog(string eventInfo, string MID)
+        {
+            try
+            {
+                Console.WriteLine("[" + DateTime.Now + "]" + eventInfo);
+                if (!eventInfo.Equals(""))
+                {
+                    string folderPath = Path.Combine(@"C:\\Users\\samue\\OneDrive\\Desktop\\ASPNET\\WcfService\\Log_down\\", "MID"+MID);
+
+                    try
+                    {
+                        if (!Directory.Exists(folderPath))
+                        {
+                            // If it doesn't exist, create it
+                            Directory.CreateDirectory(folderPath);
+                            //Console.WriteLine($"Folder for Machine {machineID} created successfully.");
+                        }
+
+                        string filePath = "C:\\Users\\samue\\OneDrive\\Desktop\\ASPNET\\WcfService\\Log_down\\MID" + MID + "\\MID" + MID + "_LogFile_" + DateTime.Now.ToString("dd-MM-yyyy") + ".txt";
+                        using (StreamWriter writer = File.AppendText(filePath))
+                        {
+                            writer.WriteLine("[" + DateTime.Now + "]" + eventInfo);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error creating folder: {ex.Message}");
+                    }
+                    
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error service: " + ex.Message);
+                string m = ex.Message;
             }
-            finally
-            {
-                isRunning = false; // Server is no longer running
-                if (listener != null)
-                {
-                    listener.Stop();
-                }
-            }
+            
         }
-        
+
         // Convert a DataTable to a string array
-        private string[] ConvertDataTableToStringArray(DataTable dataTable)      
+        public string[] ConvertDataTableToStringArray(DataTable dataTable)      
         {
             // Convert the DataTable to a string array
             List<string> dataList = new List<string>();
@@ -169,70 +431,81 @@ namespace WcfService
             }
             return dataList.ToArray();
         }
-        private void SendData(NetworkStream stream, String response)
+        public string SendData(NetworkStream stream, String response)
         {
-            byte[] responseData = Encoding.UTF8.GetBytes(response);
-            stream.Write(responseData, 0, responseData.Length);
-        }
-
-        private void SendDataTable(NetworkStream stream, String response)
-        {
-            byte[] buffer = Encoding.UTF8.GetBytes(response);
-
-            // Send the length of the data as a 4-byte integer
-            byte[] lengthBytes = BitConverter.GetBytes(buffer.Length);
-            stream.Write(lengthBytes, 0, lengthBytes.Length);
-
-            // Send the data in chunks (e.g., 1024 bytes at a time)
-            int offset = 0;
-            int chunkSize = 1024;
-            while (offset < buffer.Length)
+            try
             {
-                int remainingBytes = buffer.Length - offset;
-                int bytesToSend = Math.Min(chunkSize, remainingBytes);
-                stream.Write(buffer, offset, bytesToSend);
-                offset += bytesToSend;
+                byte[] responseData = Encoding.UTF8.GetBytes(response);
+                stream.Write(responseData, 0, responseData.Length);
+                return "true";
             }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+            
         }
 
-        public void stopTcp()
+        public string SendDataTable(NetworkStream stream, String response)
         {
-            isRunning = false;
-            listener.Stop();
-            this.StartListener();
+            try
+            {
+                byte[] buffer = Encoding.UTF8.GetBytes(response);
+
+                // Send the length of the data as a 4-byte integer
+                byte[] lengthBytes = BitConverter.GetBytes(buffer.Length);
+                stream.Write(lengthBytes, 0, lengthBytes.Length);
+
+                // Send the data in chunks (e.g., 1024 bytes at a time)
+                int offset = 0;
+                int chunkSize = 1024;
+                while (offset < buffer.Length)
+                {
+                    int remainingBytes = buffer.Length - offset;
+                    int bytesToSend = Math.Min(chunkSize, remainingBytes);
+                    stream.Write(buffer, offset, bytesToSend);
+                    offset += bytesToSend;
+                }
+                return "true";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
         public void TCPClientDisconnect()
         {
-            if (isRunning)
-            {
-                isRunning = false; // Stop the server loop
-                if (listener != null)
+            //if (true)
+            //{
+                //isRunning = false; // Stop the server loop
+                if (listener != null)   
                 {
                     listener.Stop(); // Stop listening for new connections
+                    //listener.AcceptSocket();
                 }
-            }
+            //}
         }
         public void InitializeTimer()
         {
             this._timer.Elapsed += TimerElapsed;
-            this._timer.AutoReset = false;
             this._timer.Start();
         }
 
         public void TimerElapsed(object sender, ElapsedEventArgs e)
         {
-                this.sqlConn.Close();
-                this.sqlConn.ConnectionString = V;
-                this.sqlConn.Open();
-                DataRow row = this.machines.Rows[this.randIndex];
-                int id = Convert.ToInt32(row["MachineID"]);
-                int status = Convert.ToInt32(row["MachineStatus"]);
-
-                // Set flag to prevent concurrent updates
-                this.UpdateMachineStatusRand(status, id);
+            Console.WriteLine("hi");
             
+            this.sqlConn.ConnectionString = V;
+            this.sqlConn.Open();
+            DataRow row = this.machines.Rows[this.randIndex];
+            int id = Convert.ToInt32(row["MachineID"]);
+            int status = Convert.ToInt32(row["MachineStatus"]);
+
+            // Set flag to prevent concurrent updates
+            this.UpdateMachineStatusRand(status, id);
+            //this.sqlConn.Close();
         }
-      
+
         public void login(string email)
         {
             SqlCommand login = new SqlCommand("changeUserLoginEmail", this.sqlConn);
@@ -431,6 +704,81 @@ namespace WcfService
             return message;
         }
 
+        public string checkAppUser(string userEmail, string userPassword)
+        {
+            //LAPTOP - 90E9I307
+            string message = "";
+            this.sqlConn.ConnectionString = V;
+            sqlConn.Open();
+            SqlCommand checkEmail = new SqlCommand("checkEmail", this.sqlConn);  //call stored procedure and add input into parameter 
+            checkEmail.CommandType = CommandType.StoredProcedure;
+            checkEmail.Parameters.Add("@userEmail", userEmail);
+
+            SqlCommand checkPassword = new SqlCommand("checkPassword", this.sqlConn);  //call stored procedure and add input into parameter 
+            checkPassword.CommandType = CommandType.StoredProcedure;
+            checkPassword.Parameters.Add("@userPassword", userPassword);
+            int checkEmailResult = (int)checkEmail.ExecuteScalar();
+            int checkPasswordResult = (int)checkPassword.ExecuteScalar();
+            if (checkEmailResult > 0 && checkPasswordResult > 0)
+            {
+                message = "Login Successful";
+            }
+            else 
+            {
+                if (!(checkEmailResult > 0) && checkPasswordResult > 0)
+                {
+                    message = "Email Does Not Exist";
+                }
+                else if (checkEmailResult > 0 && !(checkPasswordResult > 0))
+                {
+                    message = "Incorrect Password";
+                }
+                else
+                {
+                    message = "Incorrect Email and Password";
+                }
+            }
+            sqlConn.Close();
+            return message;
+        }
+
+        public string checkMachine(string MID, string MPassword)
+        {
+            //LAPTOP - 90E9I307
+            string message = "";
+            this.sqlConn.ConnectionString = V;
+            sqlConn.Open();
+            SqlCommand checkM = new SqlCommand("checkMachine", this.sqlConn);  //call stored procedure and add input into parameter 
+            checkM.CommandType = CommandType.StoredProcedure;
+            checkM.Parameters.Add("@mID", MID);
+           
+            SqlCommand checkMPassword = new SqlCommand("checkMachinePassword", this.sqlConn);  //call stored procedure and add input into parameter 
+            checkMPassword.CommandType = CommandType.StoredProcedure;
+            checkMPassword.Parameters.Add("@mPassword", MPassword);
+            int checkMachineIDResult = (int)checkM.ExecuteScalar();
+            int checkMachinePasswordResult = (int)checkMPassword.ExecuteScalar();
+            if (checkMachineIDResult > 0 && checkMachinePasswordResult > 0)
+            {
+                message = "Login Successful";
+            }
+            else
+            {
+                if (!(checkMachineIDResult > 0) && checkMachinePasswordResult > 0)
+                {
+                    message = "Machine ID Does Not Exist";
+                }
+                else if (checkMachineIDResult > 0 && !(checkMachinePasswordResult > 0))
+                {
+                    message = "Incorrect Password for Machine ID: " + MID;
+                }
+                else
+                {
+                    message = "Incorrect Machine ID and Password";
+                }
+            }
+            sqlConn.Close();
+            return message;
+        }
         ///////////////////Machine///////////////////////////
         public string CreateMachine(string name)
         {
@@ -469,6 +817,46 @@ namespace WcfService
             this.sqlConn.Close();
             //this.OnUpdateCompleted();
         }
+        public string StopTcp()
+        {
+            //isRunning = false;
+            //listener.Stop();
+            //this.StartListener();
+            return "turn asd";
+        }
+        public string UpdateMachineStatus(int status, string mid)
+        {
+            this.sqlConn.ConnectionString = V;
+            this.sqlConn.Open();
+            SqlCommand upMS = new SqlCommand("updateMachineStatus", this.sqlConn);
+            upMS.CommandType = CommandType.StoredProcedure;
+            upMS.Parameters.Add("@mStatus", status);
+            upMS.Parameters.Add("@mId", mid);
+
+            // Add an output parameter to capture the result
+            SqlParameter resultParam = new SqlParameter("@result", SqlDbType.Int);
+            resultParam.Direction = ParameterDirection.Output;
+            upMS.Parameters.Add(resultParam);
+
+            upMS.ExecuteNonQuery();
+
+            // Get the value of the @result parameter
+            int result = Convert.ToInt32(upMS.Parameters["@result"].Value);
+
+            string updateStatus = "";
+            if (result == 1)
+            {
+                updateStatus = "Machine (ID: " + mid + ") Status Successfully Updated To " + status + ".";
+            }
+            else
+            {
+                updateStatus = "Machine (ID: " + mid + ") Status Update Failed";
+            }
+
+            this.sqlConn.Close();
+            return updateStatus;
+        }
+
         public string UpdateMachineName(string machineName, int id)
         {    
             this.sqlConn.ConnectionString = V;
@@ -512,7 +900,6 @@ namespace WcfService
 
         public DataTable getAllMachine()
         {
-
             //System.Threading.Thread.Sleep(3000);
             this.sqlConn.Open();
             SqlDataAdapter adapter = new SqlDataAdapter();
@@ -525,35 +912,6 @@ namespace WcfService
             this.sqlConn.Close();
             return dt;
         }
-
-        //public string UpdateMachinStatusWithDelay(int mId, string delay, string finalDelay)
-        //{
-        //    i nt retrievedStatus = int.Parse(this.getMachineStatus(mId));
-        //    string message;
-        //    this.sqlConn.ConnectionString = "Server=SAMUELHAN; Database=newDb; User Id=sa; Password=sasa;";
-        //    sqlConn.Open();
-        //    int updatedMStatus = retrievedStatus == 1 ? 2 : 1;
-        //    SqlCommand statusCmd = new SqlCommand("updateMachineStatus", this.sqlConn);
-        //    statusCmd.CommandType = CommandType.StoredProcedure;
-        //    statusCmd.Parameters.Add("@mId", mId);
-        //    statusCmd.Parameters.Add("@mStatus", updatedMStatus);
-        //    statusCmd.Parameters.AddWithValue("@delay", delay);
-        //    int result = statusCmd.ExecuteNonQuery(); 
-        //    if (result == 1)
-        //    {
-        //        SqlCommand chkStatus = new SqlCommand("checkUpdatedMachineStatus", this.sqlConn);
-        //        chkStatus.CommandType = CommandType.StoredProcedure;
-        //        chkStatus.Parameters.Add("@mId", mId);
-        //        chkStatus.Parameters.Add("@mStatus", updatedMStatus);
-        //        chkStatus.Parameters.Add("@delay", finalDelay);
-        //        message = (int)chkStatus.ExecuteScalar() > 0 ? "Successfully Updated" : "Update not completed";
-        //    }
-        //    else
-        //    {
-        //        message = "Update Failed";
-        //    }
-        //    return message;
-        //}
         public string getMachineStatus(int mId)
         {
             string message;
